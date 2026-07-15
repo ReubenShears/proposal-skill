@@ -49,6 +49,12 @@ if (!existsSync(demoPng)) console.warn('[warn] no demo.png — page 2 image fram
 
 // ---- 2. fill template ----
 let html = readFileSync(join(SKILL_DIR, 'template.html'), 'utf8');
+
+// conditional P.S.: only render if PS_BODY has genuine content, else drop the whole block
+const ps = (data.PS_BODY ?? '').toString().trim();
+if (!ps) { html = html.replace(/<!--PS_START-->[\s\S]*?<!--PS_END-->/g, ''); console.log('[ps] no PS_BODY — P.S. block omitted.'); }
+else html = html.replace(/<!--PS_START-->/g, '').replace(/<!--PS_END-->/g, '');
+
 for (const [key, val] of Object.entries(data)) {
   if (key === key.toUpperCase()) html = html.replaceAll(`{{${key}}}`, String(val));
 }

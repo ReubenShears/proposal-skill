@@ -95,10 +95,11 @@ python -c "import fitz; d=fitz.open(r'<outDir>\proposal.pdf'); [p.get_pixmap(dpi
   generic FAQs. Answer each the way the pitch-flow doc prescribes.
 - **Next step = the real next step** from the call row (usually a decision on the follow-up call). Do not
   reference internal mechanics (e.g. granting Framer access).
-- **The P.S. must be genuine.** Reference a real, specific moment from the transcript, something about the
-  person's character or values that actually resonated. If it reads like generic flattery or could apply to
-  anyone, it is wrong. This is the human touch that lands after all the logic; a fake one does more harm than
-  none.
+- **The P.S. is optional, and only genuine.** Include one ONLY if there is a real, specific moment from the
+  transcript worth naming, something about the person's character or values that actually resonated. If there
+  is nothing genuine to say, **omit `PS_BODY` entirely** (leave the key out of data.json) and the block drops
+  automatically. Never force a generic P.S.; a fake one does more harm than none. If it could apply to anyone,
+  it is wrong, cut it.
 - Brand voice: we/you, confident, specific numbers, Title Case headlines, no "supercharge/unlock", no
   exclamation marks, no emoji in flow text.
 
@@ -126,7 +127,7 @@ All keys are UPPERCASE. Values may contain inline HTML (`<strong>`, `<br>`) and 
 | ROI_REAL_RANGE / ROI_CLOSE / ROI_TICKET | Their real close range, the cut rate used, the average ticket |
 | ROI_FLOOR_CLIENTS / ROI_FLOOR_REV / ROI_INVEST / ROI_MULTIPLE | Computed floor figures + investment + estimated multiple |
 | ROI_KICKER | "And that is the floor..." the same maths at their real rate |
-| PS_BODY | A genuine, personal P.S. referencing something real from the call: the prospect's character, values, or a moment that resonated. Must feel true, never generic or flattering-for-its-own-sake. Pull it from the transcript. |
+| PS_BODY | **Optional.** A genuine, personal P.S. referencing something real from the call. Include ONLY if there is something true and specific worth saying; otherwise omit the key entirely and the block is dropped. Never generic. |
 | PRICE_MAIN / PRICE_SUB / PRICE_EXPLANATION | £2,500 primary, approx $3,000 sub, the value framing (~£830/mo) |
 | FAQ1..5_Q / FAQ1..5_A | Five Q&A matched to their real objections |
 | NEXT_STEP_BODY | The actual next step + decision ask |
