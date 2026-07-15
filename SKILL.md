@@ -7,8 +7,8 @@ description: >-
   "build a proposal for Ross Powell", "make the Survival 401k proposal", "put together a proposal
   for <company>", "proposal on autopilot for <prospect>". Pulls the call data from Baserow Sales
   Call Data, finds and screenshots the prospect's live demo from the CRM, writes the tailored copy
-  (external-cause diagnosis, conservative ROI on their own numbers, objection-matched FAQ), and
-  renders a 6-page branded PDF. Optimally-internal.
+  (external-cause diagnosis, conservative ROI on their own numbers, objection-matched FAQ, a genuine
+  personal P.S.), and renders a 7-page branded PDF. Optimally-internal.
 user-invocable: true
 ---
 
@@ -95,6 +95,10 @@ python -c "import fitz; d=fitz.open(r'<outDir>\proposal.pdf'); [p.get_pixmap(dpi
   generic FAQs. Answer each the way the pitch-flow doc prescribes.
 - **Next step = the real next step** from the call row (usually a decision on the follow-up call). Do not
   reference internal mechanics (e.g. granting Framer access).
+- **The P.S. must be genuine.** Reference a real, specific moment from the transcript, something about the
+  person's character or values that actually resonated. If it reads like generic flattery or could apply to
+  anyone, it is wrong. This is the human touch that lands after all the logic; a fake one does more harm than
+  none.
 - Brand voice: we/you, confident, specific numbers, Title Case headlines, no "supercharge/unlock", no
   exclamation marks, no emoji in flow text.
 
@@ -122,7 +126,7 @@ All keys are UPPERCASE. Values may contain inline HTML (`<strong>`, `<br>`) and 
 | ROI_REAL_RANGE / ROI_CLOSE / ROI_TICKET | Their real close range, the cut rate used, the average ticket |
 | ROI_FLOOR_CLIENTS / ROI_FLOOR_REV / ROI_INVEST / ROI_MULTIPLE | Computed floor figures + investment + estimated multiple |
 | ROI_KICKER | "And that is the floor..." the same maths at their real rate |
-| REVSHARE_BODY | The intro-engagement → revenue-share positioning (names the company) |
+| PS_BODY | A genuine, personal P.S. referencing something real from the call: the prospect's character, values, or a moment that resonated. Must feel true, never generic or flattering-for-its-own-sake. Pull it from the transcript. |
 | PRICE_MAIN / PRICE_SUB / PRICE_EXPLANATION | £2,500 primary, approx $3,000 sub, the value framing (~£830/mo) |
 | FAQ1..5_Q / FAQ1..5_A | Five Q&A matched to their real objections |
 | NEXT_STEP_BODY | The actual next step + decision ask |
@@ -131,8 +135,9 @@ All keys are UPPERCASE. Values may contain inline HTML (`<strong>`, `<br>`) and 
 ## Fixed content (baked into template.html, do not tokenise)
 
 Standard for every proposal, edit `template.html` (or `assets/`) to change them for all future proposals:
-- The three "missing" warning cards, guarantee wording, 9-row deliverables table, shell/parked-car line, ROI disclaimer.
-- **Proof page** (page 5): three client results (Liam Evans / Unorthodox Digital $40k→$180k/mo + quote, Kasey Jones / Essentialist CEO 455 registrations, Matt / Ember $90k/mo).
+- The three "missing" warning cards, guarantee wording, shell/parked-car line, ROI disclaimer.
+- **Deliverables** (page 6): 9-item 2-column grid + the 4-step **roadmap** (Day 1 onboarding, Day 7 funnel live, Days 7-90 newsletter sprint, Day 90 ROI + long term). The revenue-share positioning is folded into the Day 90 milestone, no separate band.
+- **Proof page** (page 5): three client results (Liam Evans / Unorthodox Digital $40k→$180k/mo + quote, Kasey Jones / Essentialist CEO $0→$40k/mo with ~550 leads/mo, Matt / Ember $50k→$90k/mo).
 - **"See how we operate" videos** (bottom of the Proof page): three Reuben Shears YouTube videos. Thumbnails live in `assets/vid1.jpg` (QtrBokKeTyg), `vid2.jpg` (3Uu31_SIVLI), `vid3.jpg` (fuV46q7BPpI); links are hardcoded in the template. Re-download a thumbnail with `curl -sfL https://img.youtube.com/vi/<id>/maxresdefault.jpg` (fall back to `hqdefault.jpg`).
 - **Live calculator link** in the price box: `https://demos.optimally.ltd/calculator`.
 
