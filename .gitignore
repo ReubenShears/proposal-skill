@@ -1,0 +1,10 @@
+# Real prospect data + finished proposals stay local (they go to Google Drive, not the public repo)
+examples/survival401k.json
+examples/*-live.json
+
+# Build artifacts (generated into output dirs, never committed)
+proposal.pdf
+proposal.html
+demo.png
+pg*.png
+t*.png

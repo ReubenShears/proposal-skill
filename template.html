@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Optimally · Proposal for {{COMPANY}}</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+:root{
+  --teal:#002F2F; --olive:#728C41; --olive-700:#5F7636; --lime:#A6E53D;
+  --cream:#F7F5EF; --cream-deep:#EEEAD9; --paper:#FAFAF7; --white:#fff;
+  --ink:#0F1A1A; --text:#5c5c5c; --muted:#8a8a8a;
+  --border:#E5E5E0; --border-strong:#D4D4CE; --red:#C93B2B; --orange:#F26A2E; --blue:#2563EB;
+}
+*{box-sizing:border-box;} html,body{margin:0;padding:0;}
+body{ font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif; color:var(--text); font-size:11pt; line-height:1.58; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; background:#d8d8d2; }
+@page{ size:A4; margin:0; }
+.page{ position:relative; width:210mm; height:297mm; background:var(--white); margin:0 auto; padding:15mm 18mm; overflow:hidden; page-break-after:always; }
+.page:last-child{ page-break-after:auto; }
+.page.cream{ background:var(--cream); }
+.page.dots{ background-color:var(--paper); background-image:radial-gradient(circle, #dcdcd4 1px, transparent 1px); background-size:22px 22px; }
+h1,h2,h3,h4{ color:var(--teal); font-weight:600; margin:0; letter-spacing:-0.02em; line-height:1.12; }
+h2{ font-size:22pt; } h3{ font-size:15pt; letter-spacing:-0.01em; } h4{ font-size:12pt; }
+p{ margin:0 0 9pt 0; } strong{ color:var(--ink); font-weight:600; }
+.u{ text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:3px; text-decoration-color:var(--olive); }
+.small{ font-size:9pt; } .muted{ color:var(--muted); }
+.eyebrow{ font-size:9.5pt; font-weight:600; color:var(--olive); letter-spacing:0.05em; text-transform:uppercase; display:inline-flex; align-items:center; gap:7px; margin-bottom:13px; }
+.eyebrow .dot{ width:6px;height:6px;border-radius:50%;background:var(--lime); display:inline-block; }
+.pill{ display:inline-flex; width:21px;height:21px;border-radius:6px;align-items:center;justify-content:center;vertical-align:-5px; }
+.pill svg{ width:12px;height:12px;stroke:#fff;stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round; }
+.pill.green{ background:var(--olive); } .pill.orange{ background:var(--orange); } .pill.blue{ background:var(--blue); }
+.brandbar{ display:flex; align-items:center; justify-content:space-between; margin-bottom:20px; }
+.brandbar img{ height:22px; }
+.brandbar .tag{ font-size:8.5pt; color:var(--muted); letter-spacing:0.03em; text-transform:uppercase; }
+.pfoot{ position:absolute; left:18mm; right:18mm; bottom:11mm; display:flex; justify-content:space-between; font-size:8pt; color:var(--muted); border-top:1px solid var(--border); padding-top:8px; letter-spacing:0.02em; }
+.cover{ display:flex; flex-direction:column; height:267mm; }
+.cover-logo{ height:30px; width:auto; align-self:flex-start; }
+.cover-mid{ margin-top:auto; }
+.cover-rule{ height:5px; width:64px; background:var(--lime); border-radius:99px; margin-bottom:26px; }
+.cover .kicker{ font-size:10.5pt; font-weight:600; color:var(--olive); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:14px; }
+.cover .company{ font-size:64pt; line-height:0.98; letter-spacing:-0.035em; color:var(--teal); margin-bottom:20px; }
+.cover .company .k{ color:var(--olive); }
+.cover .sub{ font-size:13.5pt; color:#4a4a4a; max-width:150mm; margin:0; }
+.cover-meta{ margin-top:42px; display:flex; gap:38px; }
+.cover-meta .lbl{ font-size:8pt; text-transform:uppercase; letter-spacing:0.06em; color:var(--muted); margin-bottom:3px; }
+.cover-meta .val{ font-size:10.5pt; color:var(--ink); font-weight:500; }
+.statstrip{ display:flex; border:1px solid var(--border); border-radius:12px; overflow:hidden; margin:16px 0; }
+.statstrip .s{ flex:1; padding:14px 18px; border-right:1px solid var(--border); }
+.statstrip .s:last-child{ border-right:none; }
+.statstrip .n{ font-size:21pt; font-weight:600; color:var(--teal); letter-spacing:-0.02em; line-height:1; }
+.statstrip .n .unit{ font-size:11pt; color:var(--olive); }
+.statstrip .l{ font-size:8.4pt; color:var(--text); margin-top:6px; line-height:1.35; }
+.demoframe{ border-radius:15px; padding:12px; background:radial-gradient(ellipse at 80% 0%, rgba(166,229,61,.30) 0%, transparent 55%), radial-gradient(ellipse at 20% 100%, rgba(114,140,65,.15) 0%, transparent 60%), var(--cream); border:1px solid var(--cream-deep); }
+.demoshot{ width:100%; max-height:70mm; object-fit:cover; object-position:top center; border-radius:8px; border:1px solid var(--border-strong); display:block; background:#fff; }
+.shell-line{ margin:12px 0 10px; font-size:11pt; } .shell-line strong{ color:var(--teal); }
+.miss-wrap{ display:grid; grid-template-columns:repeat(3,1fr); gap:11px; }
+.miss{ border:1px solid #eec6bf; border-top:3px solid var(--red); border-radius:10px; padding:12px 14px; background:#fcf4f2; }
+.miss .tag{ display:flex; align-items:center; gap:5px; font-size:7.6pt; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--red); margin-bottom:6px; }
+.miss .tag svg{ width:11px;height:11px;stroke:var(--red);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round; }
+.miss h4{ color:var(--teal); font-size:11pt; margin-bottom:4px; }
+.miss p{ font-size:8.5pt; margin:0; line-height:1.4; }
+.gap{ border:1px solid var(--border); border-radius:13px; margin-bottom:11px; overflow:hidden; background:#fff; }
+.gap-head{ display:flex; align-items:center; gap:13px; padding:11px 20px; background:var(--cream); border-bottom:1px solid var(--cream-deep); }
+.gap-num{ flex:none; width:31px;height:31px;border-radius:9px; background:var(--teal); color:var(--lime); font-weight:600; font-size:13pt; display:flex;align-items:center;justify-content:center; letter-spacing:-0.02em; }
+.gap-head h3{ font-size:14pt; } .gap-head .say{ font-size:9pt; color:var(--olive); font-style:italic; margin-top:1px; }
+.gap-body{ padding:12px 20px 5px; }
+.gap-body .row{ display:grid; grid-template-columns:86px 1fr; gap:10px; margin-bottom:7px; align-items:baseline; }
+.gap-body .row .k{ font-size:8.5pt; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; color:var(--olive); }
+.gap-body .row .v{ font-size:10pt; color:var(--text); } .gap-body .row .v strong{ color:var(--ink); }
+.guarantee{ background:var(--teal); color:#dfe6d9; border-radius:16px; padding:24px 28px; }
+.guarantee h2{ color:#fff; font-size:19pt; margin-bottom:9px; }
+.guarantee p{ color:#b9ccc4; font-size:10.5pt; margin-bottom:0; } .guarantee .big{ color:var(--lime); }
+.roi{ width:100%; border-collapse:collapse; margin-top:4px; }
+.roi td,.roi th{ text-align:left; padding:8px 12px; font-size:10pt; border-bottom:1px solid var(--border); }
+.roi th{ font-size:8pt; text-transform:uppercase; letter-spacing:0.05em; color:var(--muted); font-weight:600; }
+.roi td.r,.roi th.r{ text-align:right; }
+.roi tr.floor td{ background:var(--cream); font-weight:600; color:var(--ink); border-bottom:1px solid var(--cream-deep); }
+.roi .win{ color:var(--olive); font-weight:600; }
+.deliv{ width:100%; border-collapse:collapse; }
+.deliv td{ padding:7.5px 12px; border-bottom:1px solid var(--border); font-size:9.8pt; vertical-align:top; }
+.deliv tr:last-child td{ border-bottom:none; }
+.deliv .num{ width:24px; color:var(--olive); font-weight:600; }
+.deliv .name{ width:190px; color:var(--ink); font-weight:600; }
+.deliv .inc{ width:78px; text-align:right; color:var(--olive); font-weight:600; font-size:8.6pt; } .deliv .bonus{ color:var(--orange); }
+.revshare{ background:var(--teal); border-radius:14px; padding:15px 24px; }
+.revshare h4{ color:var(--lime); font-size:11.5pt; margin-bottom:6px; }
+.revshare p{ color:#b9ccc4; font-size:9.6pt; margin:0; line-height:1.5; }
+.pricebox{ display:flex; align-items:center; gap:26px; background:var(--cream); border:1px solid var(--cream-deep); border-radius:16px; padding:22px 28px; }
+.pricebox .amt{ font-size:36pt; font-weight:600; color:var(--teal); letter-spacing:-0.03em; line-height:1; }
+.pricebox .small{ margin-top:4px; } .pricebox .meta{ font-size:9.6pt; color:var(--text); } .pricebox .meta strong{ color:var(--ink); }
+.faq{ margin-bottom:12px; } .faq .q{ font-size:10.5pt; font-weight:600; color:var(--teal); margin-bottom:3px; }
+.faq .a{ font-size:9.8pt; color:var(--text); margin:0; line-height:1.5; }
+.cta{ background:var(--lime); border-radius:16px; padding:24px 28px; }
+.cta h2{ color:var(--teal); font-size:18pt; margin-bottom:8px; }
+.cta p{ color:#294527; margin-bottom:0; font-size:10.3pt; line-height:1.55; }
+.sigline{ font-size:15pt; font-weight:600; color:var(--teal); letter-spacing:-0.01em; }
+.sigrole{ font-size:9pt; color:var(--muted); margin-top:2px; }
+.spacer{ height:13px; } .spacer-s{ height:7px; }
+/* proof cards */
+.proof{ display:flex; gap:20px; align-items:center; border:1px solid var(--border); border-radius:14px; padding:18px 24px; margin-bottom:13px; }
+.proof .metric{ flex:none; width:158px; }
+.proof .metric .big{ font-size:23pt; font-weight:600; color:var(--teal); letter-spacing:-0.025em; line-height:1.02; }
+.proof .metric .big .u{ font-size:12pt; color:var(--olive); text-decoration:none; }
+.proof .metric .who{ font-size:9pt; color:var(--teal); font-weight:600; margin-top:7px; }
+.proof .metric .co{ font-size:8.4pt; color:var(--muted); }
+.proof .say{ font-size:10pt; color:var(--text); line-height:1.5; border-left:2px solid var(--lime); padding-left:18px; }
+.proof .say em{ color:var(--ink); font-style:italic; }
+/* video cards */
+.vids-lead{ font-size:10pt; margin:2px 0 11px; }
+.videos{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.vid{ border:1px solid var(--border); border-radius:11px; overflow:hidden; background:#fff; text-decoration:none; display:block; }
+.vid .tw{ position:relative; }
+.vid img{ width:100%; aspect-ratio:16/9; object-fit:cover; display:block; background:#0b1a1a; }
+.vid .play{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; }
+.vid .play span{ width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.93); display:flex;align-items:center;justify-content:center; box-shadow:0 2px 8px rgba(0,0,0,.25); }
+.vid .play svg{ width:12px;height:12px;fill:var(--teal); margin-left:2px; }
+.vid .t{ padding:9px 12px 11px; }
+.vid .t .ttl{ font-size:8.6pt; font-weight:600; color:var(--teal); line-height:1.32; }
+.vid .t .w{ font-size:7.6pt; color:var(--olive); font-weight:600; margin-top:6px; text-transform:uppercase; letter-spacing:0.05em; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<section class="page cover cream">
+  <img class="cover-logo" src="logo.avif" alt="Optimally">
+  <div class="cover-mid">
+    <div class="cover-rule"></div>
+    <div class="kicker">Client Acquisition Proposal</div>
+    <div class="company">{{COMPANY_LEAD}} <span class="k">{{COMPANY_TAIL}}</span></div>
+    <p class="sub">{{COVER_SUB}}</p>
+    <div class="cover-meta">
+      <div><div class="lbl">Prepared for</div><div class="val">{{PREPARED_FOR}}</div></div>
+      <div><div class="lbl">Prepared by</div><div class="val">{{PREPARED_BY}}</div></div>
+      <div><div class="lbl">Date</div><div class="val">{{DATE}}</div></div>
+      <div><div class="lbl">{{REVIEW_LABEL}}</div><div class="val">{{REVIEW_VALUE}}</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SITUATION + DEMO + MISSING -->
+<section class="page">
+  <div class="brandbar"><img src="logo.avif" alt="Optimally"><span class="tag">Proposal for {{COMPANY}}</span></div>
+  <div class="eyebrow"><span class="dot"></span>The Situation</div>
+  <h2>{{DIAGNOSIS_HEADLINE}}</h2>
+  <div class="spacer-s"></div>
+  <p>{{DIAGNOSIS_BODY}}</p>
+  <div class="statstrip">
+    <div class="s"><div class="n">{{STAT1_NUM}}<span class="unit">{{STAT1_UNIT}}</span></div><div class="l">{{STAT1_LABEL}}</div></div>
+    <div class="s"><div class="n">{{STAT2_NUM}}<span class="unit">{{STAT2_UNIT}}</span></div><div class="l">{{STAT2_LABEL}}</div></div>
+    <div class="s"><div class="n">{{STAT3_NUM}}<span class="unit">{{STAT3_UNIT}}</span></div><div class="l">{{STAT3_LABEL}}</div></div>
+  </div>
+  <div class="eyebrow" style="margin-top:6px;"><span class="dot"></span>What We Built You First</div>
+  <p class="small" style="margin-bottom:9px;">{{DEMO_INTRO}}</p>
+  <div class="demoframe"><img class="demoshot" src="demo.png" alt="The funnel built for {{COMPANY}}"></div>
+  <p class="small muted" style="margin-top:7px;margin-bottom:12px;">Live at <a href="{{DEMO_URL}}" style="color:var(--olive);font-weight:600;text-decoration:none;">{{DEMO_LINK_TEXT}}</a>. If for any reason you cannot open the link, the screenshot above shows it exactly.</p>
+  <p class="shell-line">But be clear: what this is, right now, is a <strong>shell</strong>. A page on its own is a parked car. It looks the part, yet it does not move. Three things make it actually drive, and all three are missing.</p>
+  <div class="miss-wrap">
+    <div class="miss"><div class="tag"><svg viewBox="0 0 24 24"><path d="M12 3 2 20h20L12 3Z"/><line x1="12" y1="10" x2="12" y2="14"/><line x1="12" y1="17" x2="12" y2="17"/></svg>Missing</div><h4>No Offer</h4><p>The headline is a best guess. A page converts on its offer, not its pixels.</p></div>
+    <div class="miss"><div class="tag"><svg viewBox="0 0 24 24"><path d="M12 3 2 20h20L12 3Z"/><line x1="12" y1="10" x2="12" y2="14"/><line x1="12" y1="17" x2="12" y2="17"/></svg>Missing</div><h4>No Video</h4><p>The video box is empty. The video is the salesman that warms visitors up.</p></div>
+    <div class="miss"><div class="tag"><svg viewBox="0 0 24 24"><path d="M12 3 2 20h20L12 3Z"/><line x1="12" y1="10" x2="12" y2="14"/><line x1="12" y1="17" x2="12" y2="17"/></svg>Missing</div><h4>No Traffic</h4><p>Nobody is arriving yet. A page with no traffic is a billboard in the desert.</p></div>
+  </div>
+  <div class="pfoot"><span>Optimally · Done-For-You Client Acquisition</span><span>optimally.ltd</span></div>
+</section>
+
+<!-- THE THREE GAPS -->
+<section class="page">
+  <div class="brandbar"><img src="logo.avif" alt="Optimally"><span class="tag">Proposal for {{COMPANY}}</span></div>
+  <div class="eyebrow"><span class="dot"></span>What We Do · The Three Gaps We Fill</div>
+  <h2>Offer. <span style="color:var(--olive)">Video.</span> Traffic.</h2>
+  <div class="spacer-s"></div>
+  <p style="margin-bottom:16px;">This is the difference between the free page and a page that fills the calendar. Each gap is a problem that is hard to solve from inside the business, and each one is what the fee covers.</p>
+  <div class="gap">
+    <div class="gap-head"><div class="gap-num">1</div><div><h3>The Offer</h3><div class="say">"The page is only as good as the offer on it."</div></div><div style="margin-left:auto;"><span class="pill green"><svg viewBox="0 0 24 24"><polyline points="4 14 10 8 14 12 20 5"/><polyline points="15 5 20 5 20 10"/></svg></span></div></div>
+    <div class="gap-body">
+      <div class="row"><div class="k">What we do</div><div class="v">{{GAP1_WHAT}}</div></div>
+      <div class="row"><div class="k">Why it matters</div><div class="v">{{GAP1_WHY}}</div></div>
+      <div class="row"><div class="k">The result</div><div class="v">{{GAP1_RESULT}}</div></div>
+    </div>
+  </div>
+  <div class="gap">
+    <div class="gap-head"><div class="gap-num">2</div><div><h3>The Video (VSL)</h3><div class="say">"A salesman that works while you sleep."</div></div><div style="margin-left:auto;"><span class="pill blue"><svg viewBox="0 0 24 24"><polygon points="6 4 20 12 6 20 6 4"/></svg></span></div></div>
+    <div class="gap-body">
+      <div class="row"><div class="k">What we do</div><div class="v">{{GAP2_WHAT}}</div></div>
+      <div class="row"><div class="k">Why it matters</div><div class="v">{{GAP2_WHY}}</div></div>
+      <div class="row"><div class="k">The result</div><div class="v">{{GAP2_RESULT}}</div></div>
+    </div>
+  </div>
+  <div class="gap">
+    <div class="gap-head"><div class="gap-num">3</div><div><h3>The Traffic</h3><div class="say">"A billboard in the desert sells nothing."</div></div><div style="margin-left:auto;"><span class="pill orange"><svg viewBox="0 0 24 24"><line x1="4" y1="20" x2="20" y2="20"/><rect x="6" y="12" width="3" height="6"/><rect x="11" y="8" width="3" height="10"/><rect x="16" y="4" width="3" height="14"/></svg></span></div></div>
+    <div class="gap-body">
+      <div class="row"><div class="k">What we do</div><div class="v">{{GAP3_WHAT}}</div></div>
+      <div class="row"><div class="k">The bonus</div><div class="v">{{GAP3_BONUS}}</div></div>
+      <div class="row"><div class="k">The result</div><div class="v">{{GAP3_RESULT}}</div></div>
+    </div>
+  </div>
+  <div class="pfoot"><span>Optimally · Done-For-You Client Acquisition</span><span>optimally.ltd</span></div>
+</section>
+
+<!-- GUARANTEE + MODEL -->
+<section class="page dots">
+  <div class="brandbar"><img src="logo.avif" alt="Optimally"><span class="tag">Proposal for {{COMPANY}}</span></div>
+  <div class="eyebrow"><span class="dot"></span>The Guarantee</div>
+  <div class="guarantee">
+    <h2>5 booked calls in 90 days, or we keep working <span class="big">free</span>.</h2>
+    <p>We guarantee only what we control: qualified calls on the calendar. Not closes, not revenue, those stay yours. If we do not deliver the five, we do not walk away. We keep going until they are there.</p>
+  </div>
+  <div class="spacer"></div>
+  <div class="eyebrow"><span class="dot"></span>The Model, On Real Numbers</div>
+  <h3 style="margin-bottom:6px;">What the guaranteed minimum looks like</h3>
+  <p class="small" style="margin-bottom:2px;">{{ROI_INTRO}}</p>
+  <table class="roi">
+    <tr><th>Input</th><th class="r">Conservative figure</th></tr>
+    <tr><td>Guaranteed booked calls</td><td class="r">5</td></tr>
+    <tr><td>Close rate <span class="muted small">(real rate is {{ROI_REAL_RANGE}})</span></td><td class="r">{{ROI_CLOSE}}</td></tr>
+    <tr><td>Average client value</td><td class="r">{{ROI_TICKET}}</td></tr>
+    <tr class="floor"><td>New clients off the guaranteed floor</td><td class="r">{{ROI_FLOOR_CLIENTS}}</td></tr>
+    <tr class="floor"><td>Revenue off the guaranteed floor</td><td class="r">{{ROI_FLOOR_REV}}</td></tr>
+    <tr><td>The investment</td><td class="r">{{ROI_INVEST}}</td></tr>
+    <tr><td><strong>Estimated return on the guaranteed minimum</strong></td><td class="r win">{{ROI_MULTIPLE}}</td></tr>
+  </table>
+  <div class="spacer-s"></div>
+  <p style="font-size:10.5pt;">{{ROI_KICKER}}</p>
+  <p class="small muted" style="margin-top:8px;">These figures are estimates built from the numbers you shared with us, and depend on your own close rate and pricing.</p>
+  <div class="pfoot"><span>Optimally · Done-For-You Client Acquisition</span><span>optimally.ltd</span></div>
+</section>
+
+<!-- PROOF -->
+<section class="page">
+  <div class="brandbar"><img src="logo.avif" alt="Optimally"><span class="tag">Proposal for {{COMPANY}}</span></div>
+  <div class="eyebrow"><span class="dot"></span>Proof</div>
+  <h2>The same system, already working.</h2>
+  <div class="spacer-s"></div>
+  <p style="margin-bottom:16px;">A few of the businesses running this exact structure with us right now.</p>
+
+  <div class="proof">
+    <div class="metric"><div class="big">$40k <span class="u">&#8594;</span> $180k<span class="u">/mo</span></div><div class="who">Liam Evans</div><div class="co">Unorthodox Digital</div></div>
+    <div class="say"><em>"You've saved me time and made us money. The business is only as strong as the systems it's built on, and what you built us is world-class."</em></div>
+  </div>
+  <div class="proof">
+    <div class="metric"><div class="big">455</div><div class="who">Kasey Jones</div><div class="co">Essentialist CEO</div></div>
+    <div class="say">Registrations to a single workshop through a conversion-optimised funnel, driving predictable $30k+ months on autopilot.</div>
+  </div>
+  <div class="proof">
+    <div class="metric"><div class="big">$90k<span class="u">/mo</span></div><div class="who">Matt</div><div class="co">Ember</div></div>
+    <div class="say">Consistently pulls $90k a month through his funnel, and is now doubling his marketing input and spend on the back of it.</div>
+  </div>
+
+  <div class="spacer"></div>
+  <div class="eyebrow"><span class="dot"></span>See How We Operate</div>
+  <p class="vids-lead">If you want to go deeper on how we build and run these funnels before Friday, these are worth a watch.</p>
+  <div class="videos">
+    <a class="vid" href="https://www.youtube.com/watch?v=QtrBokKeTyg">
+      <div class="tw"><img src="vid1.jpg" alt=""><div class="play"><span><svg viewBox="0 0 24 24"><polygon points="7 5 19 12 7 19 7 5"/></svg></span></div></div>
+      <div class="t"><div class="ttl">The exact system to sell high-ticket services on autopilot</div><div class="w">Watch on YouTube</div></div>
+    </a>
+    <a class="vid" href="https://www.youtube.com/watch?v=3Uu31_SIVLI">
+      <div class="tw"><img src="vid2.jpg" alt=""><div class="play"><span><svg viewBox="0 0 24 24"><polygon points="7 5 19 12 7 19 7 5"/></svg></span></div></div>
+      <div class="t"><div class="ttl">The exact funnel I'd use if I had to start from scratch in 2025</div><div class="w">Watch on YouTube</div></div>
+    </a>
+    <a class="vid" href="https://www.youtube.com/watch?v=fuV46q7BPpI">
+      <div class="tw"><img src="vid3.jpg" alt=""><div class="play"><span><svg viewBox="0 0 24 24"><polygon points="7 5 19 12 7 19 7 5"/></svg></span></div></div>
+      <div class="t"><div class="ttl">I studied 1000 funnels: this stopped them making money</div><div class="w">Watch on YouTube</div></div>
+    </a>
+  </div>
+  <div class="pfoot"><span>Optimally · Done-For-You Client Acquisition</span><span>optimally.ltd</span></div>
+</section>
+
+<!-- DELIVERABLES + REVSHARE + PRICE -->
+<section class="page">
+  <div class="brandbar"><img src="logo.avif" alt="Optimally"><span class="tag">Proposal for {{COMPANY}}</span></div>
+  <div class="eyebrow"><span class="dot"></span>Exactly What You Get</div>
+  <h2>The Conversion Ecosystem</h2>
+  <div class="spacer-s"></div>
+  <p style="margin-bottom:12px;">A complete, done-for-you client acquisition system. Built in 7 days, then driven for 90.</p>
+  <div style="border:1px solid var(--border);border-radius:14px;padding:4px 22px;">
+  <table class="deliv">
+    <tr><td class="num">1</td><td class="name">Offer engineering session</td><td>A focused 1-hour session; the service mapped into a documented, cold-traffic-ready offer.</td><td class="inc">Included</td></tr>
+    <tr><td class="num">2</td><td class="name">Custom funnel in Framer</td><td>A branded, responsive landing page built around the mapped offer.</td><td class="inc">Included</td></tr>
+    <tr><td class="num">3</td><td class="name">Scripted &amp; edited VSL</td><td>The video sales letter fully written and produced, embedded in the page.</td><td class="inc">Included</td></tr>
+    <tr><td class="num">4</td><td class="name">Confirmation page + FAQs</td><td>A thank-you page wired to the booking flow.</td><td class="inc">Included</td></tr>
+    <tr><td class="num">5</td><td class="name">Opt-in &amp; booking flow</td><td>Name, email and phone capture through to the calendar, fully wired.</td><td class="inc">Included</td></tr>
+    <tr><td class="num">6</td><td class="name">Reactivation newsletter</td><td>List built and filtered from the CRM, LinkedIn and email, campaign written and run across 90 days.</td><td class="inc">Included</td></tr>
+    <tr><td class="num">7</td><td class="name">90 days of active traffic</td><td>We work the funnel for the full engagement to hit the guarantee.</td><td class="inc">Included</td></tr>
+    <tr><td class="num">8</td><td class="name">The guarantee</td><td>5 booked calls in 90 days, or we keep working free until they are there.</td><td class="inc">Included</td></tr>
+    <tr><td class="num">9</td><td class="name">Meta ad management</td><td><strong class="bonus">Entirely optional.</strong> Only if a budget is put behind ads to scale faster. Never required, and managed at no extra fee.</td><td class="inc bonus">Optional bonus</td></tr>
+  </table>
+  </div>
+  <div style="height:11px"></div>
+  <div class="revshare"><h4>Where this leads</h4><p>{{REVSHARE_BODY}}</p></div>
+  <div style="height:11px"></div>
+  <div class="pricebox">
+    <div><div class="amt">{{PRICE_MAIN}}</div><div class="small muted">{{PRICE_SUB}}</div></div>
+    <div class="meta">
+      <p style="margin:0 0 6px;">{{PRICE_EXPLANATION}}</p>
+      <p class="small muted" style="margin:0;">Prefer to model your own numbers? Open the <a href="https://demos.optimally.ltd/calculator" style="color:var(--olive);font-weight:600;text-decoration:none;">live calculator</a> and play with the figures yourself.</p>
+    </div>
+  </div>
+  <div class="pfoot"><span>Optimally · Done-For-You Client Acquisition</span><span>optimally.ltd</span></div>
+</section>
+
+<!-- FAQ + NEXT STEP -->
+<section class="page cream">
+  <div class="brandbar"><img src="logo.avif" alt="Optimally"><span class="tag">Proposal for {{COMPANY}}</span></div>
+  <div class="eyebrow"><span class="dot"></span>Straight Answers</div>
+  <h2>The questions worth asking</h2>
+  <div class="spacer"></div>
+  <div class="faq"><div class="q">{{FAQ1_Q}}</div><p class="a">{{FAQ1_A}}</p></div>
+  <div class="faq"><div class="q">{{FAQ2_Q}}</div><p class="a">{{FAQ2_A}}</p></div>
+  <div class="faq"><div class="q">{{FAQ3_Q}}</div><p class="a">{{FAQ3_A}}</p></div>
+  <div class="faq"><div class="q">{{FAQ4_Q}}</div><p class="a">{{FAQ4_A}}</p></div>
+  <div class="faq"><div class="q">{{FAQ5_Q}}</div><p class="a">{{FAQ5_A}}</p></div>
+  <div class="spacer"></div>
+  <div class="cta"><h2>The next step</h2><p>{{NEXT_STEP_BODY}}</p></div>
+  <div class="spacer"></div>
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;">
+    <div><div class="sigline">{{SIGN_NAME}}</div><div class="sigrole">{{SIGN_ROLE}}</div></div>
+    <img src="mark.avif" alt="" style="height:38px;opacity:.9;">
+  </div>
+  <div class="pfoot"><span>Optimally · Done-For-You Client Acquisition</span><span>optimally.ltd</span></div>
+</section>
+</body>
+</html>
