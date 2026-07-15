@@ -70,11 +70,11 @@ It screenshots the demo, fills the template, copies assets, guards em dashes, re
 Watch its stderr: `[warn] unfilled tokens` means a token is missing; `[guard] replaced N em dash(es)`
 means you left an em dash in the copy — go fix the source text, do not rely on the guard.
 
-**5. Deliver — three steps.** Interactive: first render the pages to PNG for a visual check (below) and
-fix anything, then `SendUserFile` the PDF. Then, in both modes:
-  a. **Google Drive** — upload `proposal.pdf` to the **Proposals** folder (id `17Np2D13OsubTeWe0xwqK6-4d219hiVbZ`) via the Drive MCP, named `<Company> Proposal.pdf`. Keep the returned file/view link.
-  b. **Baserow** — create a row in **Proposals Data** (`1079548`): Prospect Name, Company, Quoted Ticket (e.g. `£2,500`), Demo URL, Proposal PDF = the Drive link, Status = `Rendered`, Sales Call = link to the Sales Call Data row (by id), Notes. (`Date Created` is auto.)
-  c. **Slack** — post the proposal notification to `#5-asset-generation` in the asset-house format (below).
+**5. Deliver.** Interactive: render the pages to PNG for a visual check (below), fix anything, then `SendUserFile` the PDF. Then (both modes):
+  a. **Host the PDF (canonical link, MUST succeed)** — git-push it to `ReubenShears/demos` at `proposals/<slug>.pdf`; it serves at `https://demos.optimally.ltd/proposals/<slug>.pdf`. That URL is the Proposal PDF link everywhere below. **NEVER upload the PDF through the native Google Drive MCP — it requires inline base64 and a real PDF is far too large for a single turn. Do not attempt it.**
+  b. **Google Drive** — also upload the local PDF into the **Proposals** folder (id `17Np2D13OsubTeWe0xwqK6-4d219hiVbZ`) via the **Composio** Google Drive upload action (server-side, from the file — not base64).
+  c. **Baserow** — create a row in **Proposals Data** (`1079548`): Prospect Name, Company, Quoted Ticket (e.g. `£2,500`), Demo URL, Proposal PDF = the **hosted URL**, Status = `Rendered`, Sales Call = link to the Sales Call Data row (by id), Notes. (`Date Created` is auto.)
+  d. **Slack** — post the proposal notification to `#5-asset-generation` in the asset-house format (below), linking the hosted URL.
 
 Render pages to check:
 ```
@@ -100,10 +100,18 @@ needed to build ships in the public repo.
 **Runtime requirements (the routine's environment must have these):**
 - **Node.js** — `build.mjs` uses only Node built-ins (`fs`, `child_process`, `path`, `url`). No `npm install`, no third-party packages.
 - **Headless Chrome, Chromium, or Edge** — used for the demo screenshot and the PDF render. `build.mjs` auto-detects common Windows/Linux/macOS paths; if it is elsewhere, set `CHROME_PATH` to the binary. **This is the one hard external dependency — if the routine box has no Chrome/Chromium, install it or point `CHROME_PATH` at one.**
-- **Network egress** — Chrome fetches the Inter web font (Google Fonts) and screenshots the live demo URL at build time.
-- **MCP connectors** — Baserow (call data), GoHighLevel (demo URL), Google Drive (delivery). Note: interactively-authenticated MCP servers may be absent in a headless cron run; confirm these three are available to the routine.
+- **Network egress** — Chrome fetches the Inter web font (Google Fonts) at render time. The demo screenshot is NOT taken by Chrome in the sandbox (egress to `demos.optimally.ltd` is blocked); it comes from Firecrawl (see Sandbox constraints below).
+- **MCP connectors** — Baserow (call data), GoHighLevel (demo URL), **Firecrawl** (read demo + screenshot it), **Composio** (Drive upload), plus a `GITHUB_TOKEN` for the git-host. Interactively-authenticated MCP servers can be absent in a headless run; confirm these are available to the routine.
 
 **Preconditions:** the prospect must already have (a) a logged **Sales Call Data** row and (b) a **deployed demo** (its URL in the CRM). If either is missing, the routine cannot build a complete proposal — surface that rather than shipping a half-built one.
+
+### Sandbox constraints (learned from live routine runs — follow these, they will save the run)
+- **No system Chrome, but Playwright's Chromium is present.** Run `npx playwright install chromium` if needed and set `CHROME_PATH` to that binary before `build.mjs`.
+- **Direct egress to `demos.optimally.ltd` is BLOCKED** by org sandbox policy (do not try to bypass it). Two consequences:
+  1. **Read the demo page via Firecrawl**, not WebFetch or a direct fetch (those 403 / are denied).
+  2. **`build.mjs`'s own Chrome-on-live-URL screenshot will fail.** Instead capture the demo screenshot via **Firecrawl** (screenshot the demo URL — the returned image is on an allow-listed host), save it as `demo.png` in the output dir, and set `"SKIP_DEMO_SHOT": true` in `data.json` so `build.mjs` uses your `demo.png` instead of trying to fetch the blocked URL.
+- **The native Google Drive MCP requires inline base64** and cannot take a real PDF (too large for a turn). Deliver server-side only: **git-host** (canonical link) + **Composio** Drive upload. Never inline-base64 the PDF, and never get stuck on delivery.
+- **git-host details:** remote `https://x-access-token:${GITHUB_TOKEN}@github.com/ReubenShears/demos.git`, commit author `132842611+ReubenShears@users.noreply.github.com` (Vercel blocks other authors), push to `main`. Path `proposals/<slug>.pdf` → `https://demos.optimally.ltd/proposals/<slug>.pdf`.
 
 ## Slack notification format
 
