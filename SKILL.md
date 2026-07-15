@@ -31,7 +31,9 @@ guarantee, the conservative-ROI rule, and the objection pre-handles.
 | Thing | Value |
 |---|---|
 | Skill dir | `C:\Users\Reubs\.claude\skills\proposal` (template.html, build.mjs, assets/, references/, examples/) |
+| Public repo | `github.com/ReubenShears/proposal-skill` — self-contained; a routine `git clone`s this and runs `build.mjs` from the clone root |
 | Output dir | `D:\Claude Cowork\proposals\<slug>\` (create it; `<slug>` = kebab company, e.g. `survival-401k`) |
+| Delivery (Drive) | finished PDF uploads to the Google Drive **Proposals** folder, id `17Np2D13OsubTeWe0xwqK6-4d219hiVbZ` |
 | Baserow — Sales Call Data | table `1028550` (the call transcript + structured KPI fields) |
 | Baserow — Objection Data | table `1028590` (objections raised, linked from the call row) |
 | CRM (GoHighLevel) | LeadConnector MCP `2a59a55b-bfd6-44e2-bc09-85d430112b39` (via ghl-proxy). Demo URL custom field id **`6dtdKnKMkB659ZVlsRof`** |
@@ -66,13 +68,32 @@ It screenshots the demo, fills the template, copies assets, guards em dashes, re
 Watch its stderr: `[warn] unfilled tokens` means a token is missing; `[guard] replaced N em dash(es)`
 means you left an em dash in the copy — go fix the source text, do not rely on the guard.
 
-**5. Deliver.** Render the pages to PNG for a visual check (see below), fix anything, then `SendUserFile`
-the PDF. Do not auto-send until you have eyeballed the pages.
+**5. Deliver.** Interactive: render the pages to PNG for a visual check (see below), fix anything, then
+`SendUserFile` the PDF. Routine/headless: upload `proposal.pdf` to the Google Drive **Proposals** folder
+(id `17Np2D13OsubTeWe0xwqK6-4d219hiVbZ`) via the Drive MCP, naming it `<Company> Proposal.pdf`.
 
 Render pages to check:
 ```
 python -c "import fitz; d=fitz.open(r'<outDir>\proposal.pdf'); [p.get_pixmap(dpi=110).save(rf'<outDir>\pg{i+1}.png') for i,p in enumerate(d)]"
 ```
+
+## Running in a routine (headless, self-contained)
+
+A remote routine produces a proposal end to end like this. Everything needed ships in the public repo.
+
+1. `git clone https://github.com/ReubenShears/proposal-skill` (or reuse a cached clone). `build.mjs`,
+   `template.html`, and `assets/` sit at the repo root, so run `build.mjs` from there.
+2. Resolve the prospect + write `data.json` (workflow steps 1-3) using the Baserow + GHL MCP connectors.
+3. `node <repo>/build.mjs <data.json> <outDir>` → produces `proposal.pdf`.
+4. Upload `proposal.pdf` to the Drive **Proposals** folder (id above) via the Drive MCP.
+
+**Runtime requirements (the routine's environment must have these):**
+- **Node.js** — `build.mjs` uses only Node built-ins (`fs`, `child_process`, `path`, `url`). No `npm install`, no third-party packages.
+- **Headless Chrome, Chromium, or Edge** — used for the demo screenshot and the PDF render. `build.mjs` auto-detects common Windows/Linux/macOS paths; if it is elsewhere, set `CHROME_PATH` to the binary. **This is the one hard external dependency — if the routine box has no Chrome/Chromium, install it or point `CHROME_PATH` at one.**
+- **Network egress** — Chrome fetches the Inter web font (Google Fonts) and screenshots the live demo URL at build time.
+- **MCP connectors** — Baserow (call data), GoHighLevel (demo URL), Google Drive (delivery). Note: interactively-authenticated MCP servers may be absent in a headless cron run; confirm these three are available to the routine.
+
+**Preconditions:** the prospect must already have (a) a logged **Sales Call Data** row and (b) a **deployed demo** (its URL in the CRM). If either is missing, the routine cannot build a complete proposal — surface that rather than shipping a half-built one.
 
 ## Copy rules (non-negotiable — these are why the proposal works)
 

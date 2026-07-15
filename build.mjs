@@ -21,13 +21,20 @@ const outDir = resolve(process.argv[3] || dirname(dataPath));
 
 const CHROME_CANDIDATES = [
   process.env.CHROME_PATH,
+  // Windows
   'C:/Program Files/Google/Chrome/Application/chrome.exe',
   'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe',
   'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',
   'C:/Program Files/Microsoft/Edge/Application/msedge.exe',
+  // Linux (cloud routines)
+  '/usr/bin/google-chrome', '/usr/bin/google-chrome-stable',
+  '/usr/bin/chromium', '/usr/bin/chromium-browser', '/snap/bin/chromium',
+  // macOS
+  '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+  '/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge',
 ].filter(Boolean);
 const CHROME = CHROME_CANDIDATES.find((p) => existsSync(p));
-if (!CHROME) throw new Error('No Chrome or Edge found. Set CHROME_PATH.');
+if (!CHROME) throw new Error('No Chrome or Edge found. Install Chrome/Chromium or set CHROME_PATH to its binary.');
 
 const fileUrl = (abs) => 'file:///' + abs.replace(/\\/g, '/').replace(/ /g, '%20');
 const run = (args) => execFileSync(CHROME, args, { stdio: ['ignore', 'ignore', 'ignore'] });
