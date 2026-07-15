@@ -149,7 +149,7 @@ All keys are UPPERCASE. Values may contain inline HTML (`<strong>`, `<br>`) and 
 | ROI_FLOOR_CLIENTS / ROI_FLOOR_REV / ROI_INVEST / ROI_MULTIPLE | Computed floor figures + investment + estimated multiple |
 | ROI_KICKER | "And that is the floor..." the same maths at their real rate |
 | PS_BODY | **Optional.** A genuine, personal P.S. referencing something real from the call. Include ONLY if there is something true and specific worth saying; otherwise omit the key entirely and the block is dropped. Never generic. |
-| PRICE_MAIN / PRICE_SUB / PRICE_EXPLANATION | £2,500 primary, approx $3,000 sub, the value framing (~£830/mo) |
+| PRICE_MAIN / PRICE_SUB / PRICE_EXPLANATION | £2,500 primary, approx $3,000 sub. EXPLANATION ties the price to value: for a USD-facing prospect, lead with "We bill in GBP, but" then ~$1,000/mo to generate the conservative floor (e.g. $10,500). |
 | FAQ1..5_Q / FAQ1..5_A | Five Q&A matched to their real objections |
 | NEXT_STEP_BODY | The actual next step + decision ask |
 | SIGN_NAME / SIGN_ROLE | "Reuben Shears" / "Founder, Optimally" |
