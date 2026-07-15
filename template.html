@@ -4,7 +4,11 @@
 <meta charset="utf-8">
 <title>Optimally · Proposal for {{COMPANY}}</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+/* Inter bundled locally (assets copied next to this file) so the render never depends on a network font fetch. A blocked/slow Google Fonts request in a sandbox was falling back to a wider font and overflowing the fixed page boxes. */
+@font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:block;src:url('inter-400.woff2') format('woff2');}
+@font-face{font-family:'Inter';font-style:normal;font-weight:500;font-display:block;src:url('inter-500.woff2') format('woff2');}
+@font-face{font-family:'Inter';font-style:normal;font-weight:600;font-display:block;src:url('inter-600.woff2') format('woff2');}
+@font-face{font-family:'Inter';font-style:normal;font-weight:700;font-display:block;src:url('inter-700.woff2') format('woff2');}
 :root{
   --teal:#002F2F; --olive:#728C41; --olive-700:#5F7636; --lime:#A6E53D;
   --cream:#F7F5EF; --cream-deep:#EEEAD9; --paper:#FAFAF7; --white:#fff;
@@ -126,8 +130,8 @@ p{ margin:0 0 9pt 0; } strong{ color:var(--ink); font-weight:600; }
 /* proof cards */
 .proof{ display:flex; gap:18px; align-items:center; border:1px solid var(--border); border-radius:16px; padding:13px 18px; margin-bottom:12px; }
 .proof .pfp{ flex:none; width:104px; height:104px; object-fit:cover; object-position:center; border-radius:14px; }
-.proof .metric{ flex:none; width:128px; }
-.proof .metric .big{ font-size:16pt; font-weight:600; color:var(--teal); letter-spacing:-0.02em; line-height:1.05; }
+.proof .metric{ flex:none; width:146px; }
+.proof .metric .big{ font-size:15pt; font-weight:600; color:var(--teal); letter-spacing:-0.02em; line-height:1.05; white-space:nowrap; }
 .proof .metric .big .ar{ color:var(--olive); font-weight:500; }
 .proof .metric .permo{ font-size:8pt; color:var(--olive); font-weight:600; margin-top:2px; }
 .proof .metric .who{ font-size:9pt; color:var(--teal); font-weight:600; margin-top:9px; }

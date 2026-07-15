@@ -205,7 +205,8 @@ Standard for every proposal, edit `template.html` (or `assets/`) to change them 
 
 ## Notes
 
-- Page fit is tuned so each section is exactly one A4 page (6 total). If tailored copy overflows, tighten
-  the prose rather than shrinking fonts. The demo screenshot is capped at 70mm and top-cropped.
+- **Fonts are bundled** — Inter ships as `assets/inter-400/500/600/700.woff2` and loads via local `@font-face`. **Never reintroduce a Google Fonts `@import` or any web-font URL:** in a sandbox the fetch is blocked, Chromium falls back to a wider font, and the copy overflows the fixed-height page boxes (footer bleeds through content, metrics wrap, text clips). Local fonts make every render byte-identical regardless of environment.
+- **Each `.page` is a FIXED 297mm box with `overflow:hidden`** — anything too long is clipped and the footer sits on top of it. So **match the reference `example.json` lengths closely** (the SITUATION and GAPS prose especially — do not run ~50%+ longer). After rendering, **check every page** (render to PNG): if any footer overlaps content or text is cut off, tighten that page's copy and re-render until all pages fit. Keep the P.S. to 2-3 sentences. Tighten prose, never shrink fonts.
+- The demo screenshot is capped at 70mm and top-cropped.
 - To evolve the design for all proposals, edit `template.html`. To change the offer/pitch itself, edit the
   master `D:\Claude Cowork\Conversion-Ecosystem-Offer-Pitch-Flow.md` first, then this skill's copy rules.
