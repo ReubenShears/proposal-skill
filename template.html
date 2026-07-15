@@ -54,7 +54,9 @@ p{ margin:0 0 9pt 0; } strong{ color:var(--ink); font-weight:600; }
 .statstrip .n .unit{ font-size:11pt; color:var(--olive); }
 .statstrip .l{ font-size:8.4pt; color:var(--text); margin-top:6px; line-height:1.35; }
 .demoframe{ border-radius:15px; padding:12px; background:radial-gradient(ellipse at 80% 0%, rgba(166,229,61,.30) 0%, transparent 55%), radial-gradient(ellipse at 20% 100%, rgba(114,140,65,.15) 0%, transparent 60%), var(--cream); border:1px solid var(--cream-deep); }
-.demoshot{ width:100%; max-height:70mm; object-fit:cover; object-position:top center; border-radius:8px; border:1px solid var(--border-strong); display:block; background:#fff; }
+.demoshot{ width:100%; max-height:64mm; object-fit:cover; object-position:top center; border-radius:8px; border:1px solid var(--border-strong); display:block; background:#fff; }
+/* diagnosis paragraph: hard-clamped so an over-long diagnosis can NEVER push the page past A4 (page 2 overflow guard) */
+.diag{ line-height:1.5; max-height:44mm; overflow:hidden; }
 .shell-line{ margin:12px 0 10px; font-size:11pt; } .shell-line strong{ color:var(--teal); }
 .miss-wrap{ display:grid; grid-template-columns:repeat(3,1fr); gap:11px; }
 .miss{ border:1px solid #eec6bf; border-top:3px solid var(--red); border-radius:10px; padding:12px 14px; background:#fcf4f2; }
@@ -177,7 +179,7 @@ p{ margin:0 0 9pt 0; } strong{ color:var(--ink); font-weight:600; }
   <div class="eyebrow"><span class="dot"></span>The Situation</div>
   <h2>{{DIAGNOSIS_HEADLINE}}</h2>
   <div class="spacer-s"></div>
-  <p>{{DIAGNOSIS_BODY}}</p>
+  <p class="diag">{{DIAGNOSIS_BODY}}</p>
   <div class="statstrip">
     <div class="s"><div class="n">{{STAT1_NUM}}<span class="unit">{{STAT1_UNIT}}</span></div><div class="l">{{STAT1_LABEL}}</div></div>
     <div class="s"><div class="n">{{STAT2_NUM}}<span class="unit">{{STAT2_UNIT}}</span></div><div class="l">{{STAT2_LABEL}}</div></div>

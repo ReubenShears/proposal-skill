@@ -141,7 +141,10 @@ lines, `·` separators, no em dashes). Fields adapt per prospect. End with the `
 - **Diagnose without blame. Point the finger outward.** Credit what is strong (delivery, close rate,
   track record). Attribute the gap to external causes (channels drying up, a revenue stream falling away,
   no structured system feeding the funnel). Never write "you have a problem" or accusatory "you". The
-  headline must not be fluffy and must not read as insulting.
+  headline must not be fluffy and must not read as insulting, and must **never use "the hard part"** (safe
+  default: `Almost everything is already in place.`). **Keep DIAGNOSIS_BODY to 4 sentences / ~75 words** —
+  page 2 is a fixed A4 box; a long diagnosis overflows it (the template hard-clamps it, so an over-long one
+  gets clipped). Pick the essentials, do not narrate the whole call.
 - **ROI is illustrated, never promised.** Only the 5 booked calls are guaranteed. Label the return line
   "Estimated" and keep the disclaimer that the figures come from the numbers they provided.
 - **Conservative-ROI rule (the whole game):** take their stated close rate and cut it well below their own
@@ -173,8 +176,8 @@ All keys are UPPERCASE. Values may contain inline HTML (`<strong>`, `<br>`) and 
 | COVER_SUB | One-line outcome subhead. Not fluffy, not offensive. |
 | PREPARED_FOR / PREPARED_BY / DATE | Cover meta |
 | REVIEW_LABEL / REVIEW_VALUE | 4th meta cell (e.g. "Review call" / "Friday") |
-| DIAGNOSIS_HEADLINE | The situation headline. External, complimentary, unambiguous. |
-| DIAGNOSIS_BODY | 4-5 tight sentences: what is proven, what slowed (external cause), the one gap left. |
+| DIAGNOSIS_HEADLINE | The situation headline. External, complimentary, unambiguous. **NEVER use "the hard part" / "hard part is..."** (it reads as calling our funnel the hard part) and never accusatory "you". Safe, on-message default: `Almost everything is already in place.` |
+| DIAGNOSIS_BODY | **HARD CAP: 4 sentences, ~75 words max** (match `example.json` length — it MUST fit ~5 lines; page 2 is a fixed box and the template clamps it). What is proven, what slowed (external cause), the one gap left. Do not list every detail from the call — pick the essentials and keep it tight. |
 | STAT1/2/3_NUM, _UNIT, _LABEL | Three skimmable proof stats (track record, close rate, current vs target volume) |
 | DEMO_INTRO | One line introducing the funnel screenshot |
 | DEMO_URL / DEMO_LINK_TEXT | Live demo URL (also the screenshot source) + its display text |
