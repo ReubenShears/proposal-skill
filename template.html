@@ -109,6 +109,12 @@ p{ margin:0 0 9pt 0; } strong{ color:var(--ink); font-weight:600; }
 .calc-cta{ display:flex; align-items:center; justify-content:space-between; gap:16px; border:1px solid var(--cream-deep); background:var(--cream); border-radius:12px; padding:15px 22px; text-decoration:none; }
 .calc-cta .l{ color:var(--teal); font-weight:600; font-size:10.5pt; }
 .calc-cta .r{ color:var(--olive); font-weight:600; font-size:10pt; white-space:nowrap; }
+.referral{ display:flex; gap:16px; align-items:flex-start; border:1px solid var(--border); border-radius:14px; padding:16px 20px; margin-top:12px; }
+.referral .ic{ flex:none; width:38px;height:38px;border-radius:10px;background:var(--olive); display:flex;align-items:center;justify-content:center; }
+.referral .ic svg{ width:20px;height:20px;stroke:#fff;stroke-width:1.9;fill:none;stroke-linecap:round;stroke-linejoin:round; }
+.referral .rq{ font-size:11pt; font-weight:600; color:var(--teal); margin-bottom:4px; }
+.referral .rp{ font-size:9.3pt; color:var(--text); line-height:1.5; margin:0; }
+.referral .rp strong{ color:var(--ink); }
 .faq{ margin-bottom:12px; } .faq .q{ font-size:10.5pt; font-weight:600; color:var(--teal); margin-bottom:3px; }
 .faq .a{ font-size:9.8pt; color:var(--text); margin:0; line-height:1.5; }
 .cta{ background:var(--lime); border-radius:16px; padding:24px 28px; }
@@ -347,6 +353,15 @@ p{ margin:0 0 9pt 0; } strong{ color:var(--ink); font-weight:600; }
     <div><div class="amt">{{PRICE_MAIN}}</div><div class="small muted">{{PRICE_SUB}}</div></div>
     <div class="meta"><p style="margin:0;">{{PRICE_EXPLANATION}}</p></div>
   </div>
+
+  <div class="referral">
+    <div class="ic"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6.5 6.5-6.5s6.5 2.9 6.5 6.5"/><line x1="19" y1="7" x2="19" y2="13"/><line x1="16" y1="10" x2="22" y2="10"/></svg></div>
+    <div>
+      <div class="rq">Know another business owner who'd want to go through this with you?</div>
+      <p class="rp">If someone comes to mind who wants more booked calls too, introduce us. The easiest way is a quick three-way WhatsApp with you, me, and them. If they book a call and come on board, we take <strong>£500 (roughly $700) straight off your engagement</strong>, sent back to you the moment they close.</p>
+    </div>
+  </div>
+
   <div class="pfoot"><span>Optimally · Done-For-You Client Acquisition</span><span>optimally.ltd</span></div>
 </section>
 
