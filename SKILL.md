@@ -7,8 +7,8 @@ description: >-
   "build a proposal for Ross Powell", "make the Survival 401k proposal", "put together a proposal
   for <company>", "proposal on autopilot for <prospect>". Pulls the call data from Baserow Sales
   Call Data, finds and screenshots the prospect's live demo from the CRM, writes the tailored copy
-  (external-cause diagnosis, conservative ROI on their own numbers, objection-matched FAQ, a genuine
-  personal P.S.), and renders a 7-page branded PDF. Optimally-internal.
+  (external-cause diagnosis, conservative ROI on their own numbers, objection-matched FAQ), and renders
+  a 7-page branded PDF. Optimally-internal.
 user-invocable: true
 ---
 
@@ -163,11 +163,6 @@ lines, `·` separators, no em dashes). Fields adapt per prospect. End with the `
   generic FAQs. Answer each the way the pitch-flow doc prescribes.
 - **Next step = the real next step** from the call row (usually a decision on the follow-up call). Do not
   reference internal mechanics (e.g. granting Framer access).
-- **The P.S. is optional, one short sentence, and only genuine.** Include one ONLY if there is a real, specific
-  moment from the transcript worth naming, something about the person's character or values that actually
-  resonated, and say it in a **single short sentence**. If there is nothing genuine to say, **omit `PS_BODY`
-  entirely** (leave the key out of data.json) and the block drops automatically. Never force a generic P.S. or
-  a multi-sentence one; a fake or rambling one does more harm than none. If it could apply to anyone, it is wrong, cut it.
 - Brand voice: we/you, confident, specific numbers, Title Case headlines, no "supercharge/unlock", no
   exclamation marks, no emoji in flow text.
 
@@ -195,7 +190,6 @@ All keys are UPPERCASE. Values may contain inline HTML (`<strong>`, `<br>`) and 
 | ROI_REAL_RANGE / ROI_CLOSE / ROI_TICKET | Their real close range, the cut rate used, the average ticket |
 | ROI_FLOOR_CLIENTS / ROI_FLOOR_REV / ROI_INVEST / ROI_MULTIPLE | Computed floor figures + investment + estimated multiple. **ROI_MULTIPLE must be ≥ 2× and ROI_FLOOR_REV ≥ 2× the fee — never a sub-2×, break-even, or negative return** (see the conservative-ROI rule). |
 | ROI_KICKER | "And that is the floor..." the same maths at their real rate |
-| PS_BODY | **Optional. ONE short sentence.** A genuine, personal P.S. referencing something real from the call. Include ONLY if there is something true and specific worth saying; otherwise omit the key entirely and the block is dropped. Never generic, never more than one sentence. |
 | PRICE_MAIN / PRICE_SUB / PRICE_EXPLANATION | £2,500 primary, approx $3,000 sub. EXPLANATION ties the price to value: for a USD-facing prospect, lead with "We bill in GBP, but" then ~$1,000/mo to generate the conservative floor (e.g. $10,500). |
 | FAQ1..5_Q / FAQ1..5_A | Five Q&A matched to their real objections |
 | NEXT_STEP_BODY | The actual next step + decision ask |
@@ -216,7 +210,7 @@ Standard for every proposal, edit `template.html` (or `assets/`) to change them 
 ## Notes
 
 - **Fonts are bundled** — Inter ships as `assets/inter-400/500/600/700.woff2` and loads via local `@font-face`. **Never reintroduce a Google Fonts `@import` or any web-font URL:** in a sandbox the fetch is blocked, Chromium falls back to a wider font, and the copy overflows the fixed-height page boxes (footer bleeds through content, metrics wrap, text clips). Local fonts make every render byte-identical regardless of environment.
-- **Each `.page` is a FIXED 297mm box with `overflow:hidden`** — anything too long is clipped and the footer sits on top of it. So **match the reference `example.json` lengths closely** (the SITUATION and GAPS prose especially — do not run ~50%+ longer). After rendering, **check every page** (render to PNG): if any footer overlaps content or text is cut off, tighten that page's copy and re-render until all pages fit. Keep the P.S. to ONE short sentence. Tighten prose, never shrink fonts.
+- **Each `.page` is a FIXED 297mm box with `overflow:hidden`** — anything too long is clipped and the footer sits on top of it. So **match the reference `example.json` lengths closely** (the SITUATION and GAPS prose especially — do not run ~50%+ longer). After rendering, **check every page** (render to PNG): if any footer overlaps content or text is cut off, tighten that page's copy and re-render until all pages fit. Tighten prose, never shrink fonts.
 - The demo screenshot is capped at 70mm and top-cropped.
 - To evolve the design for all proposals, edit `template.html`. To change the offer/pitch itself, edit the
   master `D:\Claude Cowork\Conversion-Ecosystem-Offer-Pitch-Flow.md` first, then this skill's copy rules.
