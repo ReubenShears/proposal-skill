@@ -147,11 +147,18 @@ lines, `·` separators, no em dashes). Fields adapt per prospect. End with the `
   gets clipped). Pick the essentials, do not narrate the whole call.
 - **ROI is illustrated, never promised.** Only the 5 booked calls are guaranteed. Label the return line
   "Estimated" and keep the disclaimer that the figures come from the numbers they provided.
-- **Conservative-ROI rule (the whole game):** take their stated close rate and cut it well below their own
-  expectation, as high as stays credible but clearly under their number (e.g. 85-90% → 60%). Use their
-  **average ticket**, not top-end LTV. Round clients **down**. The floor revenue (5 × cut-rate × ticket)
-  must still clear the ~$3,000 fee comfortably (aim 2x+). Then the kicker line shows the same maths at
-  their real rate. If the floor does not clear the fee, the prospect is likely a poor fit — flag it.
+- **Conservative-ROI rule (the whole game) — the shown floor is ALWAYS a clear win, never weak, break-even,
+  or negative.** Work it backwards: the illustrated floor revenue (5 × cut-close-rate × average ticket) MUST
+  land at **≥ 2× the fee** (≥ ~$6,000 against the ~£2,500 / $3,000 price). Sandbag the close rate DOWN from
+  their stated number for credibility, but only as far as that 2× floor still holds — use the **highest
+  credible rate at or below their stated rate that keeps the floor ≥ 2×** (e.g. 85-90% → 60%). Use their
+  **average ticket** (not top LTV), round clients **down**. The kicker line then shows the same maths at
+  their real rate (a bigger multiple).
+  **Hard guardrail, never violate:** the breakdown must never display a floor at or below the fee, a return
+  under 2×, or anything that reads as negative or break-even. `ROI_MULTIPLE` ≥ 2× and `ROI_FLOOR_REV` ≥ 2×
+  the fee, always. If even their FULL stated close rate × average ticket cannot reach 2× the fee (a genuinely
+  low-ticket prospect who does not belong in this high-ticket pipeline), do NOT render a weak ROI table —
+  flag the prospect as unfit for this offer and stop, rather than show an unconvincing number.
 - **FAQ = their actual objections.** Pull from the linked Objection Data + transcript. Do not invent
   generic FAQs. Answer each the way the pitch-flow doc prescribes.
 - **Next step = the real next step** from the call row (usually a decision on the follow-up call). Do not
@@ -186,7 +193,7 @@ All keys are UPPERCASE. Values may contain inline HTML (`<strong>`, `<br>`) and 
 | GAP3_WHAT / GAP3_BONUS / GAP3_RESULT | Traffic gap (newsletter included; ads optional bonus) |
 | ROI_INTRO | Sets up the conservative assumption. Ends "Only the five booked calls are guaranteed." |
 | ROI_REAL_RANGE / ROI_CLOSE / ROI_TICKET | Their real close range, the cut rate used, the average ticket |
-| ROI_FLOOR_CLIENTS / ROI_FLOOR_REV / ROI_INVEST / ROI_MULTIPLE | Computed floor figures + investment + estimated multiple |
+| ROI_FLOOR_CLIENTS / ROI_FLOOR_REV / ROI_INVEST / ROI_MULTIPLE | Computed floor figures + investment + estimated multiple. **ROI_MULTIPLE must be ≥ 2× and ROI_FLOOR_REV ≥ 2× the fee — never a sub-2×, break-even, or negative return** (see the conservative-ROI rule). |
 | ROI_KICKER | "And that is the floor..." the same maths at their real rate |
 | PS_BODY | **Optional. ONE short sentence.** A genuine, personal P.S. referencing something real from the call. Include ONLY if there is something true and specific worth saying; otherwise omit the key entirely and the block is dropped. Never generic, never more than one sentence. |
 | PRICE_MAIN / PRICE_SUB / PRICE_EXPLANATION | £2,500 primary, approx $3,000 sub. EXPLANATION ties the price to value: for a USD-facing prospect, lead with "We bill in GBP, but" then ~$1,000/mo to generate the conservative floor (e.g. $10,500). |
