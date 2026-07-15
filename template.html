@@ -105,6 +105,9 @@ p{ margin:0 0 9pt 0; } strong{ color:var(--ink); font-weight:600; }
 .pricebox{ display:flex; align-items:center; gap:26px; background:var(--cream); border:1px solid var(--cream-deep); border-radius:16px; padding:22px 28px; }
 .pricebox .amt{ font-size:36pt; font-weight:600; color:var(--teal); letter-spacing:-0.03em; line-height:1; }
 .pricebox .small{ margin-top:4px; } .pricebox .meta{ font-size:9.6pt; color:var(--text); } .pricebox .meta strong{ color:var(--ink); }
+.calc-cta{ display:flex; align-items:center; justify-content:space-between; gap:16px; border:1px solid var(--cream-deep); background:var(--cream); border-radius:12px; padding:15px 22px; text-decoration:none; }
+.calc-cta .l{ color:var(--teal); font-weight:600; font-size:10.5pt; }
+.calc-cta .r{ color:var(--olive); font-weight:600; font-size:10pt; white-space:nowrap; }
 .faq{ margin-bottom:12px; } .faq .q{ font-size:10.5pt; font-weight:600; color:var(--teal); margin-bottom:3px; }
 .faq .a{ font-size:9.8pt; color:var(--text); margin:0; line-height:1.5; }
 .cta{ background:var(--lime); border-radius:16px; padding:24px 28px; }
@@ -240,6 +243,11 @@ p{ margin:0 0 9pt 0; } strong{ color:var(--ink); font-weight:600; }
   <div class="spacer-s"></div>
   <p style="font-size:10.5pt;">{{ROI_KICKER}}</p>
   <p class="small muted" style="margin-top:8px;">These figures are estimates built from the numbers you shared with us, and depend on your own close rate and pricing.</p>
+  <div class="spacer"></div>
+  <a class="calc-cta" href="https://demos.optimally.ltd/calculator">
+    <span class="l">Prefer to run your own numbers? Model them in the live calculator.</span>
+    <span class="r">demos.optimally.ltd/calculator &#8594;</span>
+  </a>
   <div class="pfoot"><span>Optimally · Done-For-You Client Acquisition</span><span>optimally.ltd</span></div>
 </section>
 
@@ -331,10 +339,7 @@ p{ margin:0 0 9pt 0; } strong{ color:var(--ink); font-weight:600; }
   <div style="height:15px"></div>
   <div class="pricebox">
     <div><div class="amt">{{PRICE_MAIN}}</div><div class="small muted">{{PRICE_SUB}}</div></div>
-    <div class="meta">
-      <p style="margin:0 0 6px;">{{PRICE_EXPLANATION}}</p>
-      <p class="small muted" style="margin:0;">Prefer to model your own numbers? Open the <a href="https://demos.optimally.ltd/calculator" style="color:var(--olive);font-weight:600;text-decoration:none;">live calculator</a> and play with the figures yourself.</p>
-    </div>
+    <div class="meta"><p style="margin:0;">{{PRICE_EXPLANATION}}</p></div>
   </div>
   <div class="pfoot"><span>Optimally · Done-For-You Client Acquisition</span><span>optimally.ltd</span></div>
 </section>
