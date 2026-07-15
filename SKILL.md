@@ -38,7 +38,7 @@ guarantee, the conservative-ROI rule, and the objection pre-handles.
 | Baserow — Objection Data | table `1028590` (objections raised, linked from the call row) |
 | CRM (GoHighLevel) | LeadConnector MCP `2a59a55b-bfd6-44e2-bc09-85d430112b39` (via ghl-proxy). Demo URL custom field id **`6dtdKnKMkB659ZVlsRof`** |
 | Baserow — Demo Landing Page Data | table `1024310` (fallback source for the demo URL) |
-| Baserow — Proposal Data | table `__TBD__` (one row per proposal produced; set the id after importing `Proposals-Baserow-import.csv`) |
+| Baserow — Proposals Data | table `1079548` (one row per proposal produced; `Sales Call` is a link to Sales Call Data, `Date Created` is auto) |
 | Slack notify | `#5-asset-generation` (id `C0AN653QCF2`), asset-house notification format (see below) |
 | Offer / pitch spec | `references/pitch-flow.md` (mirror of `D:\Claude Cowork\Conversion-Ecosystem-Offer-Pitch-Flow.md`) |
 | Price | **£2,500** primary, **approx $3,000** secondary. Never lead with the dollar figure. |
@@ -73,7 +73,7 @@ means you left an em dash in the copy — go fix the source text, do not rely on
 **5. Deliver — three steps.** Interactive: first render the pages to PNG for a visual check (below) and
 fix anything, then `SendUserFile` the PDF. Then, in both modes:
   a. **Google Drive** — upload `proposal.pdf` to the **Proposals** folder (id `17Np2D13OsubTeWe0xwqK6-4d219hiVbZ`) via the Drive MCP, named `<Company> Proposal.pdf`. Keep the returned file/view link.
-  b. **Baserow** — create a row in **Proposal Data** (Prospect Name, Company, Slug, Date Created, Price, Conservative Floor, Demo URL, Proposal PDF = the Drive link, Status = `Sent`, Sales Call = the call name, Notes).
+  b. **Baserow** — create a row in **Proposals Data** (`1079548`): Prospect Name, Company, Quoted Ticket (e.g. `£2,500`), Demo URL, Proposal PDF = the Drive link, Status = `Rendered`, Sales Call = link to the Sales Call Data row (by id), Notes. (`Date Created` is auto.)
   c. **Slack** — post the proposal notification to `#5-asset-generation` in the asset-house format (below).
 
 Render pages to check:
