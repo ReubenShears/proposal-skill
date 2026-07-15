@@ -38,6 +38,8 @@ guarantee, the conservative-ROI rule, and the objection pre-handles.
 | Baserow — Objection Data | table `1028590` (objections raised, linked from the call row) |
 | CRM (GoHighLevel) | LeadConnector MCP `2a59a55b-bfd6-44e2-bc09-85d430112b39` (via ghl-proxy). Demo URL custom field id **`6dtdKnKMkB659ZVlsRof`** |
 | Baserow — Demo Landing Page Data | table `1024310` (fallback source for the demo URL) |
+| Baserow — Proposal Data | table `__TBD__` (one row per proposal produced; set the id after importing `Proposals-Baserow-import.csv`) |
+| Slack notify | `#5-asset-generation` (id `C0AN653QCF2`), asset-house notification format (see below) |
 | Offer / pitch spec | `references/pitch-flow.md` (mirror of `D:\Claude Cowork\Conversion-Ecosystem-Offer-Pitch-Flow.md`) |
 | Price | **£2,500** primary, **approx $3,000** secondary. Never lead with the dollar figure. |
 | Renderer | headless Chrome (build.mjs auto-detects Chrome then Edge; override with `CHROME_PATH`) |
@@ -68,9 +70,11 @@ It screenshots the demo, fills the template, copies assets, guards em dashes, re
 Watch its stderr: `[warn] unfilled tokens` means a token is missing; `[guard] replaced N em dash(es)`
 means you left an em dash in the copy — go fix the source text, do not rely on the guard.
 
-**5. Deliver.** Interactive: render the pages to PNG for a visual check (see below), fix anything, then
-`SendUserFile` the PDF. Routine/headless: upload `proposal.pdf` to the Google Drive **Proposals** folder
-(id `17Np2D13OsubTeWe0xwqK6-4d219hiVbZ`) via the Drive MCP, naming it `<Company> Proposal.pdf`.
+**5. Deliver — three steps.** Interactive: first render the pages to PNG for a visual check (below) and
+fix anything, then `SendUserFile` the PDF. Then, in both modes:
+  a. **Google Drive** — upload `proposal.pdf` to the **Proposals** folder (id `17Np2D13OsubTeWe0xwqK6-4d219hiVbZ`) via the Drive MCP, named `<Company> Proposal.pdf`. Keep the returned file/view link.
+  b. **Baserow** — create a row in **Proposal Data** (Prospect Name, Company, Slug, Date Created, Price, Conservative Floor, Demo URL, Proposal PDF = the Drive link, Status = `Sent`, Sales Call = the call name, Notes).
+  c. **Slack** — post the proposal notification to `#5-asset-generation` in the asset-house format (below).
 
 Render pages to check:
 ```
@@ -79,13 +83,19 @@ python -c "import fitz; d=fitz.open(r'<outDir>\proposal.pdf'); [p.get_pixmap(dpi
 
 ## Running in a routine (headless, self-contained)
 
-A remote routine produces a proposal end to end like this. Everything needed ships in the public repo.
+**The routine's only input is the lead's name (text).** Everything else is pulled from that. Everything
+needed to build ships in the public repo.
 
 1. `git clone https://github.com/ReubenShears/proposal-skill` (or reuse a cached clone). `build.mjs`,
    `template.html`, and `assets/` sit at the repo root, so run `build.mjs` from there.
-2. Resolve the prospect + write `data.json` (workflow steps 1-3) using the Baserow + GHL MCP connectors.
+2. From the **name**, gather the full context (workflow steps 1-2): the **Sales Call Data** row (transcript
+   + KPIs), the **GHL contact** (and its demo URL), and the **live demo itself**. Actually read the deployed
+   demo page, not just screenshot it: it already encodes the prospect's offer, positioning, and audience
+   (a lot of the research was done when it was built), and combined with the call transcript it is what
+   makes the tailored copy sharp. Then write `data.json` (step 3).
 3. `node <repo>/build.mjs <data.json> <outDir>` → produces `proposal.pdf`.
-4. Upload `proposal.pdf` to the Drive **Proposals** folder (id above) via the Drive MCP.
+4. Deliver all three (step 5): upload to the Drive **Proposals** folder, log a row in Baserow **Proposal
+   Data**, and post the Slack notification.
 
 **Runtime requirements (the routine's environment must have these):**
 - **Node.js** — `build.mjs` uses only Node built-ins (`fs`, `child_process`, `path`, `url`). No `npm install`, no third-party packages.
@@ -94,6 +104,25 @@ A remote routine produces a proposal end to end like this. Everything needed shi
 - **MCP connectors** — Baserow (call data), GoHighLevel (demo URL), Google Drive (delivery). Note: interactively-authenticated MCP servers may be absent in a headless cron run; confirm these three are available to the routine.
 
 **Preconditions:** the prospect must already have (a) a logged **Sales Call Data** row and (b) a **deployed demo** (its URL in the CRM). If either is missing, the routine cannot build a complete proposal — surface that rather than shipping a half-built one.
+
+## Slack notification format
+
+Post to `#5-asset-generation` in the asset-house style (Slack mrkdwn: `*bold*`, `<url|label>`, `>` quote
+lines, `·` separators, no em dashes). Fields adapt per prospect. End with the `*Sent using* Claude [BST timestamp]` footer.
+
+```
+:page_facing_up: *New Proposal*
+
+*Survival 401k*   `survival401k`
+
+> :bust_in_silhouette:  *Prepared for:*  Ross Powell
+> :moneybag:  *Price:*  £2,500  (~$3,000)
+> :chart_with_upwards_trend:  *Conservative floor:*  ~$10,500 from 5 guaranteed calls
+> :globe_with_meridians:  *Demo:*  <https://demos.optimally.ltd/survival401k|demos.optimally.ltd/survival401k>
+> :page_facing_up:  *Proposal PDF:*  <drive-link|View PDF>
+> :white_check_mark:  *Status:*  Rendered · Saved to Drive · Logged to Baserow
+*Sent using* Claude [2026-07-15 12:00:00 BST]
+```
 
 ## Copy rules (non-negotiable — these are why the proposal works)
 
