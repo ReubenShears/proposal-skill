@@ -137,8 +137,8 @@ All keys are UPPERCASE. Values may contain inline HTML (`<strong>`, `<br>`) and 
 
 Standard for every proposal, edit `template.html` (or `assets/`) to change them for all future proposals:
 - The three "missing" warning cards, guarantee wording, shell/parked-car line, ROI disclaimer.
-- **Deliverables** (page 6): 9-item 2-column grid + the 4-step **roadmap** (Day 1 onboarding, Day 7 funnel live, Days 7-90 newsletter sprint, Day 90 ROI + long term). The revenue-share positioning is folded into the Day 90 milestone, no separate band.
-- **Proof page** (page 5): three client results (Liam Evans / Unorthodox Digital $40k→$180k/mo + quote, Kasey Jones / Essentialist CEO $0→$40k/mo with ~550 leads/mo, Matt / Ember $50k→$90k/mo).
+- **Deliverables** (page 6): 9-item 2-column grid + the 4-step **connected timeline** (Day 1 onboarding, Day 7 funnel live, Days 7-90 newsletter sprint, Day 90 ROI + long term; dotted line links the nodes). Revenue-share positioning is folded into the Day 90 milestone, no separate band.
+- **Proof page** (page 5): three client results with square headshots (`assets/liam.jpg` Liam Evans / Unorthodox Digital $40k→$180k/mo + quote, `assets/kasey.jpg` Kasey Jones / Essentialist CEO $0→$40k/mo ~550 leads/mo, `assets/matt.jpg` Matthew DiMarcantonio / Ember $50k→$90k/mo), then a link to more results at optimally.ltd/success.
 - **"See how we operate" videos** (bottom of the Proof page): three Reuben Shears YouTube videos. Thumbnails live in `assets/vid1.jpg` (QtrBokKeTyg), `vid2.jpg` (3Uu31_SIVLI), `vid3.jpg` (fuV46q7BPpI); links are hardcoded in the template. Re-download a thumbnail with `curl -sfL https://img.youtube.com/vi/<id>/maxresdefault.jpg` (fall back to `hqdefault.jpg`).
 - **Live calculator link** in the price box: `https://demos.optimally.ltd/calculator`.
 
