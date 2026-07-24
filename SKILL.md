@@ -152,20 +152,18 @@ lines, `·` separators, no em dashes). Fields adapt per prospect. End with the `
   default: `Almost everything is already in place.`). **Keep DIAGNOSIS_BODY to 4 sentences / ~75 words** —
   page 2 is a fixed A4 box; a long diagnosis overflows it (the template hard-clamps it, so an over-long one
   gets clipped). Pick the essentials, do not narrate the whole call.
-- **ROI is illustrated, never promised.** Only the 5 booked calls are guaranteed. Label the return line
-  "Estimated" and keep the disclaimer that the figures come from the numbers they provided.
-- **Conservative-ROI rule (the whole game) — the shown floor is ALWAYS a clear win, never weak, break-even,
-  or negative.** Work it backwards: the illustrated floor revenue (5 × cut-close-rate × average ticket) MUST
-  land at **≥ 2× the fee** (≥ ~$6,000 against the ~£2,500 / $3,000 price). Sandbag the close rate DOWN from
-  their stated number for credibility, but only as far as that 2× floor still holds — use the **highest
-  credible rate at or below their stated rate that keeps the floor ≥ 2×** (e.g. 85-90% → 60%). Use their
-  **average ticket** (not top LTV), round clients **down**. The kicker line then shows the same maths at
-  their real rate (a bigger multiple).
-  **Hard guardrail, never violate:** the breakdown must never display a floor at or below the fee, a return
-  under 2×, or anything that reads as negative or break-even. `ROI_MULTIPLE` ≥ 2× and `ROI_FLOOR_REV` ≥ 2×
-  the fee, always. If even their FULL stated close rate × average ticket cannot reach 2× the fee (a genuinely
-  low-ticket prospect who does not belong in this high-ticket pipeline), do NOT render a weak ROI table —
-  flag the prospect as unfit for this offer and stop, rather than show an unconvincing number.
+- **ROI is illustrated, never promised.** The 5-call guarantee (page 4 band) is the separate worst-case
+  floor; the ROI table shows the **realistic 90 days**. Label the return "Estimated" and keep the disclaimer
+  that figures come from the numbers they provided.
+- **Conservative-ROI rule (the whole game) — the shown return is ALWAYS a clear win, never weak, break-even,
+  or negative.** The table models the **realistic minimum, not the guarantee floor**:
+  - **Booked calls (`ROI_CALLS`): ~5 per month = ~15 over 90 days** (our client-data minimum; the guarantee of 5-in-90-days sits below this as the safety net).
+  - **Close rate (`ROI_CLOSE`):** sandbag DOWN from their stated rate for credibility (e.g. 85-90% → 60%), staying clearly below their number.
+  - **Average client value (`ROI_TICKET`):** their average ticket, not top LTV. Round clients **down**.
+  - **New revenue** = ROI_CALLS × close × ticket. **Investment (`ROI_INVEST`) INCLUDES the ad spend**: the ~£2,500/$3,000 fee **plus** the 90-day minimum ad spend ($50/day × 90 ≈ $4,500) ≈ **$7,500 total**.
+  - **`ROI_MULTIPLE` = new revenue ÷ total investment**, and it **MUST be ≥ 2×** (for a real high-ticket prospect it lands ~4×+).
+  **Hard guardrail, never violate:** never display a return under 2×, break-even, or negative. If even at the realistic ~15 calls their sandbagged close × ticket can't clear 2× of (fee + ad spend) — a genuinely low-ticket prospect who does not belong in this pipeline — do NOT render a weak table; flag them unfit and stop.
+  **`ROI_KICKER`:** the upside line — some clients generate **50+ booked calls a month**, where the return runs far into double digits.
 - **FAQ = their actual objections.** Pull from the linked Objection Data + transcript. Do not invent
   generic FAQs. Answer each the way the pitch-flow doc prescribes.
 - **Next step = the real next step** from the call row (usually a decision on the follow-up call). Do not
@@ -193,11 +191,12 @@ All keys are UPPERCASE. Values may contain inline HTML (`<strong>`, `<br>`) and 
 | GAP1_WHAT / GAP1_WHY / GAP1_RESULT | Offer gap, tailored (reference their failed ads if any) |
 | GAP2_WHAT / GAP2_WHY / GAP2_RESULT | Video gap, tailored (reference their close rate) |
 | GAP3_WHAT / GAP3_BONUS / GAP3_RESULT | Traffic gap. WHAT = we build and run their **Meta ads** end to end (the core engine; **they fund the ad spend, from $50/day**, we manage everything). GAP3_BONUS = the **reactivation newsletter, now FREE on top** (lowers their blended cost per lead; it is NOT the guarantee-carrier anymore). RESULT = the guaranteed calls from a scalable engine they control. |
-| ROI_INTRO | Sets up the conservative assumption. Ends "Only the five booked calls are guaranteed." |
-| ROI_REAL_RANGE / ROI_CLOSE / ROI_TICKET | Their real close range, the cut rate used, the average ticket |
-| ROI_FLOOR_CLIENTS / ROI_FLOOR_REV / ROI_INVEST / ROI_MULTIPLE | Computed floor figures + investment + estimated multiple. **ROI_MULTIPLE must be ≥ 2× and ROI_FLOOR_REV ≥ 2× the fee — never a sub-2×, break-even, or negative return** (see the conservative-ROI rule). |
-| ROI_KICKER | "And that is the floor..." the same maths at their real rate |
-| PRICE_MAIN / PRICE_SUB / PRICE_EXPLANATION | £2,500 primary, approx $3,000 sub. EXPLANATION: the fee is ~$1,000/mo to build and run the whole system and generate the conservative floor (e.g. $10,500); **ad spend is SEPARATE and the client's, from $50/day**. Lead with "We bill in GBP." |
+| ROI_INTRO | Sets up the realistic (not floor) model: "expect ~5 booked calls a month… the five-call guarantee above is the floor, this is the realistic picture." |
+| ROI_CALLS | Realistic booked calls over 90 days, **~15** (5/month). NOT the 5-call guarantee. |
+| ROI_REAL_RANGE / ROI_CLOSE / ROI_TICKET | Their real close range, the sandbagged rate used, the average ticket |
+| ROI_FLOOR_CLIENTS / ROI_FLOOR_REV / ROI_INVEST / ROI_MULTIPLE | New clients (= ROI_CALLS × close, rounded down), new revenue, **investment = fee + 90-day ad spend ≈ $7,500**, and multiple = revenue ÷ investment. **ROI_MULTIPLE must be ≥ 2×** (real prospects land ~4×+); never a sub-2×, break-even, or negative return. |
+| ROI_KICKER | The upside: some clients generate 50+ booked calls a month, return far into double digits. |
+| PRICE_MAIN / PRICE_SUB / PRICE_EXPLANATION | £2,500 primary, approx $3,000 sub. EXPLANATION: the fee is ~$1,000/mo to build and run the whole system; **ad spend is SEPARATE and the client's, from $50/day**. Lead with "We bill in GBP." |
 | FAQ1..5_Q / FAQ1..5_A | Five Q&A matched to their real objections |
 | NEXT_STEP_BODY | The actual next step + decision ask |
 | SIGN_NAME / SIGN_ROLE | "Reuben Shears" / "Founder, Optimally" |
