@@ -134,6 +134,13 @@ lines, `·` separators, no em dashes). Fields adapt per prospect. End with the `
 
 ## Copy rules (non-negotiable — these are why the proposal works)
 
+- **Offer model (current — read this first).** The traffic engine is **Meta ads, which we build and run end
+  to end; the client funds the ad spend (minimum $50/day)**. The **reactivation newsletter is included FREE
+  on top** (a cost-softener that lowers their blended cost per lead), NOT the guarantee-carrier. The
+  **guarantee is conditional on that minimum spend**: "5 booked calls in 90 days on $50/day or more of ad
+  spend, or we keep working free." The **£2,500 fee is separate from ad spend** and covers the system +
+  management + guarantee. Never frame ads as "optional" or the newsletter as "carrying the calls" — that is
+  the old model.
 - **No em dashes. Ever.** They read as AI. Use commas, periods, or colons. Ranges use "to" or a hyphen
   ("85 to 90 percent", "10-20"). The build script strips them as a last resort and warns; never lean on it.
 - **The prospect's company is the hero, not Optimally.** It is their document. The cover name is huge;
@@ -185,12 +192,12 @@ All keys are UPPERCASE. Values may contain inline HTML (`<strong>`, `<br>`) and 
 | DEMO_URL / DEMO_LINK_TEXT | Live demo URL (also the screenshot source) + its display text |
 | GAP1_WHAT / GAP1_WHY / GAP1_RESULT | Offer gap, tailored (reference their failed ads if any) |
 | GAP2_WHAT / GAP2_WHY / GAP2_RESULT | Video gap, tailored (reference their close rate) |
-| GAP3_WHAT / GAP3_BONUS / GAP3_RESULT | Traffic gap (newsletter included; ads optional bonus) |
+| GAP3_WHAT / GAP3_BONUS / GAP3_RESULT | Traffic gap. WHAT = we build and run their **Meta ads** end to end (the core engine; **they fund the ad spend, from $50/day**, we manage everything). GAP3_BONUS = the **reactivation newsletter, now FREE on top** (lowers their blended cost per lead; it is NOT the guarantee-carrier anymore). RESULT = the guaranteed calls from a scalable engine they control. |
 | ROI_INTRO | Sets up the conservative assumption. Ends "Only the five booked calls are guaranteed." |
 | ROI_REAL_RANGE / ROI_CLOSE / ROI_TICKET | Their real close range, the cut rate used, the average ticket |
 | ROI_FLOOR_CLIENTS / ROI_FLOOR_REV / ROI_INVEST / ROI_MULTIPLE | Computed floor figures + investment + estimated multiple. **ROI_MULTIPLE must be ≥ 2× and ROI_FLOOR_REV ≥ 2× the fee — never a sub-2×, break-even, or negative return** (see the conservative-ROI rule). |
 | ROI_KICKER | "And that is the floor..." the same maths at their real rate |
-| PRICE_MAIN / PRICE_SUB / PRICE_EXPLANATION | £2,500 primary, approx $3,000 sub. EXPLANATION ties the price to value: for a USD-facing prospect, lead with "We bill in GBP, but" then ~$1,000/mo to generate the conservative floor (e.g. $10,500). |
+| PRICE_MAIN / PRICE_SUB / PRICE_EXPLANATION | £2,500 primary, approx $3,000 sub. EXPLANATION: the fee is ~$1,000/mo to build and run the whole system and generate the conservative floor (e.g. $10,500); **ad spend is SEPARATE and the client's, from $50/day**. Lead with "We bill in GBP." |
 | FAQ1..5_Q / FAQ1..5_A | Five Q&A matched to their real objections |
 | NEXT_STEP_BODY | The actual next step + decision ask |
 | SIGN_NAME / SIGN_ROLE | "Reuben Shears" / "Founder, Optimally" |
@@ -199,7 +206,7 @@ All keys are UPPERCASE. Values may contain inline HTML (`<strong>`, `<br>`) and 
 
 Standard for every proposal, edit `template.html` (or `assets/`) to change them for all future proposals:
 - The three "missing" warning cards, guarantee wording, shell/parked-car line, ROI disclaimer.
-- **Deliverables** (page 6): 9-item 2-column grid + the 4-step **connected timeline** (Day 1 onboarding, Day 7 funnel live, Days 7-90 newsletter sprint, Day 90 ROI + long term; dotted line links the nodes). Revenue-share positioning is folded into the Day 90 milestone, no separate band.
+- **Deliverables** (page 6): 9-item 2-column grid + the 4-step **connected timeline** (Day 1 onboarding, Day 7 funnel live, Days 7-90 traffic sprint, Day 90 ROI + long term; dotted line links the nodes). Meta ad management is a **core included** deliverable (client funds spend); the reactivation newsletter is **free on top**. Revenue-share positioning is folded into the Day 90 milestone, no separate band.
 - **Proof page** (page 5): three client results with square headshots (`assets/liam.jpg` Liam Evans / Unorthodox Digital $40k→$180k/mo + quote, `assets/kasey.jpg` Kasey Jones / Essentialist CEO $0→$40k/mo ~550 leads/mo, `assets/matt.jpg` Matthew DiMarcantonio / Ember $50k→$90k/mo), then a link to more results at optimally.ltd/success.
 - **"See how we operate" videos** (bottom of the Proof page): three Reuben Shears YouTube videos. Thumbnails live in `assets/vid1.jpg` (QtrBokKeTyg), `vid2.jpg` (3Uu31_SIVLI), `vid3.jpg` (fuV46q7BPpI); links are hardcoded in the template. Re-download a thumbnail with `curl -sfL https://img.youtube.com/vi/<id>/maxresdefault.jpg` (fall back to `hqdefault.jpg`).
 - **Live calculator link**: a CTA block under the ROI model (page 4) linking `https://demos.optimally.ltd/calculator`.
