@@ -210,7 +210,7 @@ Standard for every proposal, edit `template.html` (or `assets/`) to change them 
 - **Proof page** (page 5): three client results with square headshots (`assets/liam.jpg` Liam Evans / Unorthodox Digital $40k→$180k/mo + quote, `assets/kasey.jpg` Kasey Jones / Essentialist CEO $0→$40k/mo ~550 leads/mo, `assets/matt.jpg` Matthew DiMarcantonio / Ember $50k→$90k/mo), then a link to more results at optimally.ltd/success.
 - **"See how we operate" videos** (bottom of the Proof page): three Reuben Shears YouTube videos. Thumbnails live in `assets/vid1.jpg` (QtrBokKeTyg), `vid2.jpg` (3Uu31_SIVLI), `vid3.jpg` (fuV46q7BPpI); links are hardcoded in the template. Re-download a thumbnail with `curl -sfL https://img.youtube.com/vi/<id>/maxresdefault.jpg` (fall back to `hqdefault.jpg`).
 - **Live calculator link**: a CTA block under the ROI model (page 4) linking `https://demos.optimally.ltd/calculator`.
-- **Referral offer** (page 6, under the price): introduce another business owner via a three-way WhatsApp; if they close, £500 (~$700) off the engagement, refunded on their close.
+- **Referral offer** (page 6, under the price): introduce another business owner via a three-way WhatsApp; if they close, £750 (~$1,000) off the engagement, refunded on their close.
 
 `build.mjs` copies every file in `assets/` into the output dir, so add an asset there and reference it by filename.
 
