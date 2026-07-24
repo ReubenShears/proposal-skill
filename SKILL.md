@@ -157,11 +157,11 @@ lines, `·` separators, no em dashes). Fields adapt per prospect. End with the `
   that figures come from the numbers they provided.
 - **Conservative-ROI rule (the whole game) — TWO scenarios side by side.** Showing an honest pessimistic
   case next to an optimistic one builds trust (it isn't all rosy) and makes the optimistic land harder.
-  Shared across both columns: **`ROI_CLOSE`** (sandbag DOWN from their stated rate, e.g. 85-90% → 60%),
-  **`ROI_TICKET`** (average ticket, not top LTV), and **`ROI_INVEST` = fee + 90-day ad spend ($50/day × 90 ≈ $4,500) ≈ $7,500 total**. Round clients down. Then:
-  - **Pessimistic column:** `ROI_CALLS_PESS` = **~15** (5 calls/month). `ROI_CLIENTS_PESS` = 15 × close. `ROI_REV_PESS` = clients × ticket. `ROI_MULT_PESS` = revenue ÷ investment.
-  - **Optimistic column:** `ROI_CALLS_OPT` = **~30** (10 calls/month, closer to the client norm). Same close/ticket, double the calls. `ROI_MULT_OPT` = revenue ÷ investment.
-  **Thresholds:** the **pessimistic** return may be modest — **1× to 2× is acceptable** (a slightly-under-2× worst case reads as honest); **it must never be under 1×**. The **optimistic** return should be the confident number (typically 2×+). If even the *optimistic* can't clear ~2×, or the *pessimistic* is under 1× (a genuinely low-ticket prospect who doesn't belong in this pipeline), do NOT render a weak table — flag them unfit and stop.
+  Shared across both columns: **`ROI_TICKET`** (average ticket, not top LTV), plus the split investment —
+  **`ROI_FEE`** (the Optimally management fee, one-time, ≈ $3,000) and **`ROI_SPEND`** (their ad spend, shown as **$1,500/mo**, NOT a lump; it is separate from the fee and theirs). The return is computed on the **total 90-day outlay = fee + 3 months spend (≈ $3,000 + $4,500 = $7,500)**. Round clients down. The close rate now DIFFERS by column:
+  - **Pessimistic column:** `ROI_CLOSE_PESS` = sandbagged DOWN from their stated rate (e.g. 85-90% → 60%). `ROI_CALLS_PESS` = **~15** (5 calls/month). `ROI_CLIENTS_PESS` = 15 × pess close. `ROI_REV_PESS` = clients × ticket. `ROI_MULT_PESS` = revenue ÷ ~$7,500.
+  - **Optimistic column:** `ROI_CLOSE_OPT` = **the close rate they actually stated on the call** (their real rate, not less). `ROI_CALLS_OPT` = **~30** (10 calls/month, closer to the client norm). `ROI_CLIENTS_OPT` = 30 × opt close. `ROI_REV_OPT` = clients × ticket. `ROI_MULT_OPT` = revenue ÷ ~$7,500.
+  **Thresholds:** the **pessimistic** return may be modest — **1× to 2× is acceptable** (a slightly-under-2× worst case reads as honest); **it must never be under 1×**. The **optimistic** flexes BOTH levers (double the calls AND their real close) so it lands high — that is intended. If even the *optimistic* can't clear ~2×, or the *pessimistic* is under 1× (a genuinely low-ticket prospect who doesn't belong in this pipeline), do NOT render a weak table — flag them unfit and stop.
   **`ROI_INTRO`:** frames the two ways (pessimistic ~5/mo, optimistic ~10/mo), notes the guarantee floor sits beneath both. **`ROI_KICKER`:** the pessimistic clears the investment, the optimistic multiplies it; some clients run 50+ calls a month.
 - **FAQ = their actual objections.** Pull from the linked Objection Data + transcript. Do not invent
   generic FAQs. Answer each the way the pitch-flow doc prescribes.
@@ -191,10 +191,11 @@ All keys are UPPERCASE. Values may contain inline HTML (`<strong>`, `<br>`) and 
 | GAP2_WHAT / GAP2_WHY / GAP2_RESULT | Video gap, tailored (reference their close rate) |
 | GAP3_WHAT / GAP3_BONUS / GAP3_RESULT | Traffic gap. WHAT = we build and run their **Meta ads** end to end (the core engine; **they fund the ad spend, from $50/day**, we manage everything). GAP3_BONUS = the **reactivation newsletter, now FREE on top** (lowers their blended cost per lead; it is NOT the guarantee-carrier anymore). RESULT = the guaranteed calls from a scalable engine they control. |
 | ROI_INTRO | Frames the two scenarios: pessimistic ~5 calls/mo, optimistic ~10/mo, guarantee floor sits beneath both. |
-| ROI_REAL_RANGE / ROI_CLOSE / ROI_TICKET | Their real close range, the sandbagged rate (shared across both columns), the average ticket (shared). |
-| ROI_INVEST | Shared investment = fee + 90-day ad spend ≈ **$7,500**. |
-| ROI_CALLS_PESS / ROI_CLIENTS_PESS / ROI_REV_PESS / ROI_MULT_PESS | Pessimistic column: ~15 calls (5/mo), × close = clients, × ticket = revenue, ÷ investment = multiple. **May be 1×–2× (honest), never under 1×.** |
-| ROI_CALLS_OPT / ROI_CLIENTS_OPT / ROI_REV_OPT / ROI_MULT_OPT | Optimistic column: ~30 calls (10/mo), same close/ticket, double the calls. Should clear ~2×+. |
+| ROI_REAL_RANGE / ROI_TICKET | Their real close range (shown as sublabel), the average ticket (shared across both columns). |
+| ROI_CLOSE_PESS / ROI_CLOSE_OPT | Pessimistic = sandbagged rate (e.g. 60%); Optimistic = **their actual stated close** (e.g. 85%). |
+| ROI_FEE / ROI_SPEND | Split investment: Optimally fee one-time (≈ $3,000) and their ad spend **$1,500/mo** (separate, theirs). Return is computed on fee + 3 months spend ≈ $7,500. |
+| ROI_CALLS_PESS / ROI_CLIENTS_PESS / ROI_REV_PESS / ROI_MULT_PESS | Pessimistic column: ~15 calls (5/mo), × pess close = clients, × ticket = revenue, ÷ ~$7,500 = multiple. **May be 1×–2× (honest), never under 1×.** |
+| ROI_CALLS_OPT / ROI_CLIENTS_OPT / ROI_REV_OPT / ROI_MULT_OPT | Optimistic column: ~30 calls (10/mo), × their real close = clients, × ticket = revenue, ÷ ~$7,500 = multiple. Lands high (both levers flexed). |
 | ROI_KICKER | Pessimistic clears the investment, optimistic multiplies it; some clients run 50+ calls/month. |
 | PRICE_MAIN / PRICE_SUB / PRICE_EXPLANATION | £2,500 primary, approx $3,000 sub. EXPLANATION: the fee is ~$1,000/mo to build and run the whole system; **ad spend is SEPARATE and the client's, from $50/day**. Lead with "We bill in GBP." |
 | FAQ1..5_Q / FAQ1..5_A | Five Q&A matched to their real objections |

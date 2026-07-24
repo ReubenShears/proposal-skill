@@ -247,16 +247,17 @@ p{ margin:0 0 9pt 0; } strong{ color:var(--ink); font-weight:600; }
   <table class="roi">
     <tr><th>Input</th><th class="r">Pessimistic <span class="muted small">5/mo</span></th><th class="r">Optimistic <span class="muted small">10/mo</span></th></tr>
     <tr><td>Booked calls <span class="muted small">(90 days)</span></td><td class="r">{{ROI_CALLS_PESS}}</td><td class="r">{{ROI_CALLS_OPT}}</td></tr>
-    <tr><td>Close rate <span class="muted small">(real is {{ROI_REAL_RANGE}})</span></td><td class="r">{{ROI_CLOSE}}</td><td class="r">{{ROI_CLOSE}}</td></tr>
+    <tr><td>Close rate <span class="muted small">(real is {{ROI_REAL_RANGE}})</span></td><td class="r">{{ROI_CLOSE_PESS}}</td><td class="r">{{ROI_CLOSE_OPT}}</td></tr>
     <tr><td>Average client value</td><td class="r">{{ROI_TICKET}}</td><td class="r">{{ROI_TICKET}}</td></tr>
     <tr class="floor"><td>New clients</td><td class="r">{{ROI_CLIENTS_PESS}}</td><td class="r">{{ROI_CLIENTS_OPT}}</td></tr>
     <tr class="floor"><td>New revenue</td><td class="r">{{ROI_REV_PESS}}</td><td class="r">{{ROI_REV_OPT}}</td></tr>
-    <tr><td>Investment <span class="muted small">(fee + ad spend)</span></td><td class="r">{{ROI_INVEST}}</td><td class="r">{{ROI_INVEST}}</td></tr>
+    <tr><td>Optimally fee <span class="muted small">(one-time)</span></td><td class="r">{{ROI_FEE}}</td><td class="r">{{ROI_FEE}}</td></tr>
+    <tr><td>Your ad spend <span class="muted small">(separate, yours)</span></td><td class="r">{{ROI_SPEND}}</td><td class="r">{{ROI_SPEND}}</td></tr>
     <tr><td><strong>Estimated return</strong></td><td class="r win">{{ROI_MULT_PESS}}</td><td class="r win">{{ROI_MULT_OPT}}</td></tr>
   </table>
   <div class="spacer-s"></div>
   <p style="font-size:10.5pt;">{{ROI_KICKER}}</p>
-  <p class="small muted" style="margin-top:8px;">These figures are estimates built from the numbers you shared with us, and depend on your own close rate and pricing.</p>
+  <p class="small muted" style="margin-top:8px;">These figures are estimates across the full 90 days, built from the numbers you shared with us, and depend on your own close rate and pricing.</p>
   <div class="spacer"></div>
   <a class="calc-cta" href="https://demos.optimally.ltd/calculator">
     <span class="l">Prefer to run your own numbers? Model them in the live calculator.</span>
@@ -343,7 +344,7 @@ p{ margin:0 0 9pt 0; } strong{ color:var(--ink); font-weight:600; }
       <div class="de">Your funnel launches and starts driving booked calls.</div>
     </div>
     <div class="tl">
-      <div class="node"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3 8 12 14 21 8"/></svg></div>
+      <div class="node"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></svg></div>
       <div class="day">Days 7-90</div><div class="ti">Traffic sprint</div>
       <div class="de">We run and optimise your ad campaign daily, newsletter on top, to fill the calendar.</div>
     </div>
