@@ -155,15 +155,14 @@ lines, `·` separators, no em dashes). Fields adapt per prospect. End with the `
 - **ROI is illustrated, never promised.** The 5-call guarantee (page 4 band) is the separate worst-case
   floor; the ROI table shows the **realistic 90 days**. Label the return "Estimated" and keep the disclaimer
   that figures come from the numbers they provided.
-- **Conservative-ROI rule (the whole game) — the shown return is ALWAYS a clear win, never weak, break-even,
-  or negative.** The table models the **realistic minimum, not the guarantee floor**:
-  - **Booked calls (`ROI_CALLS`): ~5 per month = ~15 over 90 days** (our client-data minimum; the guarantee of 5-in-90-days sits below this as the safety net).
-  - **Close rate (`ROI_CLOSE`):** sandbag DOWN from their stated rate for credibility (e.g. 85-90% → 60%), staying clearly below their number.
-  - **Average client value (`ROI_TICKET`):** their average ticket, not top LTV. Round clients **down**.
-  - **New revenue** = ROI_CALLS × close × ticket. **Investment (`ROI_INVEST`) INCLUDES the ad spend**: the ~£2,500/$3,000 fee **plus** the 90-day minimum ad spend ($50/day × 90 ≈ $4,500) ≈ **$7,500 total**.
-  - **`ROI_MULTIPLE` = new revenue ÷ total investment**, and it **MUST be ≥ 2×** (for a real high-ticket prospect it lands ~4×+).
-  **Hard guardrail, never violate:** never display a return under 2×, break-even, or negative. If even at the realistic ~15 calls their sandbagged close × ticket can't clear 2× of (fee + ad spend) — a genuinely low-ticket prospect who does not belong in this pipeline — do NOT render a weak table; flag them unfit and stop.
-  **`ROI_KICKER`:** the upside line — some clients generate **50+ booked calls a month**, where the return runs far into double digits.
+- **Conservative-ROI rule (the whole game) — TWO scenarios side by side.** Showing an honest pessimistic
+  case next to an optimistic one builds trust (it isn't all rosy) and makes the optimistic land harder.
+  Shared across both columns: **`ROI_CLOSE`** (sandbag DOWN from their stated rate, e.g. 85-90% → 60%),
+  **`ROI_TICKET`** (average ticket, not top LTV), and **`ROI_INVEST` = fee + 90-day ad spend ($50/day × 90 ≈ $4,500) ≈ $7,500 total**. Round clients down. Then:
+  - **Pessimistic column:** `ROI_CALLS_PESS` = **~15** (5 calls/month). `ROI_CLIENTS_PESS` = 15 × close. `ROI_REV_PESS` = clients × ticket. `ROI_MULT_PESS` = revenue ÷ investment.
+  - **Optimistic column:** `ROI_CALLS_OPT` = **~30** (10 calls/month, closer to the client norm). Same close/ticket, double the calls. `ROI_MULT_OPT` = revenue ÷ investment.
+  **Thresholds:** the **pessimistic** return may be modest — **1× to 2× is acceptable** (a slightly-under-2× worst case reads as honest); **it must never be under 1×**. The **optimistic** return should be the confident number (typically 2×+). If even the *optimistic* can't clear ~2×, or the *pessimistic* is under 1× (a genuinely low-ticket prospect who doesn't belong in this pipeline), do NOT render a weak table — flag them unfit and stop.
+  **`ROI_INTRO`:** frames the two ways (pessimistic ~5/mo, optimistic ~10/mo), notes the guarantee floor sits beneath both. **`ROI_KICKER`:** the pessimistic clears the investment, the optimistic multiplies it; some clients run 50+ calls a month.
 - **FAQ = their actual objections.** Pull from the linked Objection Data + transcript. Do not invent
   generic FAQs. Answer each the way the pitch-flow doc prescribes.
 - **Next step = the real next step** from the call row (usually a decision on the follow-up call). Do not
@@ -191,11 +190,12 @@ All keys are UPPERCASE. Values may contain inline HTML (`<strong>`, `<br>`) and 
 | GAP1_WHAT / GAP1_WHY / GAP1_RESULT | Offer gap, tailored (reference their failed ads if any) |
 | GAP2_WHAT / GAP2_WHY / GAP2_RESULT | Video gap, tailored (reference their close rate) |
 | GAP3_WHAT / GAP3_BONUS / GAP3_RESULT | Traffic gap. WHAT = we build and run their **Meta ads** end to end (the core engine; **they fund the ad spend, from $50/day**, we manage everything). GAP3_BONUS = the **reactivation newsletter, now FREE on top** (lowers their blended cost per lead; it is NOT the guarantee-carrier anymore). RESULT = the guaranteed calls from a scalable engine they control. |
-| ROI_INTRO | Sets up the realistic (not floor) model: "expect ~5 booked calls a month… the five-call guarantee above is the floor, this is the realistic picture." |
-| ROI_CALLS | Realistic booked calls over 90 days, **~15** (5/month). NOT the 5-call guarantee. |
-| ROI_REAL_RANGE / ROI_CLOSE / ROI_TICKET | Their real close range, the sandbagged rate used, the average ticket |
-| ROI_FLOOR_CLIENTS / ROI_FLOOR_REV / ROI_INVEST / ROI_MULTIPLE | New clients (= ROI_CALLS × close, rounded down), new revenue, **investment = fee + 90-day ad spend ≈ $7,500**, and multiple = revenue ÷ investment. **ROI_MULTIPLE must be ≥ 2×** (real prospects land ~4×+); never a sub-2×, break-even, or negative return. |
-| ROI_KICKER | The upside: some clients generate 50+ booked calls a month, return far into double digits. |
+| ROI_INTRO | Frames the two scenarios: pessimistic ~5 calls/mo, optimistic ~10/mo, guarantee floor sits beneath both. |
+| ROI_REAL_RANGE / ROI_CLOSE / ROI_TICKET | Their real close range, the sandbagged rate (shared across both columns), the average ticket (shared). |
+| ROI_INVEST | Shared investment = fee + 90-day ad spend ≈ **$7,500**. |
+| ROI_CALLS_PESS / ROI_CLIENTS_PESS / ROI_REV_PESS / ROI_MULT_PESS | Pessimistic column: ~15 calls (5/mo), × close = clients, × ticket = revenue, ÷ investment = multiple. **May be 1×–2× (honest), never under 1×.** |
+| ROI_CALLS_OPT / ROI_CLIENTS_OPT / ROI_REV_OPT / ROI_MULT_OPT | Optimistic column: ~30 calls (10/mo), same close/ticket, double the calls. Should clear ~2×+. |
+| ROI_KICKER | Pessimistic clears the investment, optimistic multiplies it; some clients run 50+ calls/month. |
 | PRICE_MAIN / PRICE_SUB / PRICE_EXPLANATION | £2,500 primary, approx $3,000 sub. EXPLANATION: the fee is ~$1,000/mo to build and run the whole system; **ad spend is SEPARATE and the client's, from $50/day**. Lead with "We bill in GBP." |
 | FAQ1..5_Q / FAQ1..5_A | Five Q&A matched to their real objections |
 | NEXT_STEP_BODY | The actual next step + decision ask |

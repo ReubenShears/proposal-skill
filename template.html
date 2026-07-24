@@ -242,17 +242,17 @@ p{ margin:0 0 9pt 0; } strong{ color:var(--ink); font-weight:600; }
   </div>
   <div class="spacer"></div>
   <div class="eyebrow"><span class="dot"></span>The Model, On Real Numbers</div>
-  <h3 style="margin-bottom:6px;">What a realistic 90 days looks like</h3>
+  <h3 style="margin-bottom:6px;">What the 90 days looks like, two ways</h3>
   <p class="small" style="margin-bottom:2px;">{{ROI_INTRO}}</p>
   <table class="roi">
-    <tr><th>Input</th><th class="r">Conservative figure</th></tr>
-    <tr><td>Booked calls <span class="muted small">(90 days, ~5/month)</span></td><td class="r">{{ROI_CALLS}}</td></tr>
-    <tr><td>Close rate <span class="muted small">(real rate is {{ROI_REAL_RANGE}})</span></td><td class="r">{{ROI_CLOSE}}</td></tr>
-    <tr><td>Average client value</td><td class="r">{{ROI_TICKET}}</td></tr>
-    <tr class="floor"><td>New clients</td><td class="r">{{ROI_FLOOR_CLIENTS}}</td></tr>
-    <tr class="floor"><td>New revenue</td><td class="r">{{ROI_FLOOR_REV}}</td></tr>
-    <tr><td>Investment <span class="muted small">(fee + 90 days ad spend)</span></td><td class="r">{{ROI_INVEST}}</td></tr>
-    <tr><td><strong>Estimated return</strong></td><td class="r win">{{ROI_MULTIPLE}}</td></tr>
+    <tr><th>Input</th><th class="r">Pessimistic <span class="muted small">5/mo</span></th><th class="r">Optimistic <span class="muted small">10/mo</span></th></tr>
+    <tr><td>Booked calls <span class="muted small">(90 days)</span></td><td class="r">{{ROI_CALLS_PESS}}</td><td class="r">{{ROI_CALLS_OPT}}</td></tr>
+    <tr><td>Close rate <span class="muted small">(real is {{ROI_REAL_RANGE}})</span></td><td class="r">{{ROI_CLOSE}}</td><td class="r">{{ROI_CLOSE}}</td></tr>
+    <tr><td>Average client value</td><td class="r">{{ROI_TICKET}}</td><td class="r">{{ROI_TICKET}}</td></tr>
+    <tr class="floor"><td>New clients</td><td class="r">{{ROI_CLIENTS_PESS}}</td><td class="r">{{ROI_CLIENTS_OPT}}</td></tr>
+    <tr class="floor"><td>New revenue</td><td class="r">{{ROI_REV_PESS}}</td><td class="r">{{ROI_REV_OPT}}</td></tr>
+    <tr><td>Investment <span class="muted small">(fee + ad spend)</span></td><td class="r">{{ROI_INVEST}}</td><td class="r">{{ROI_INVEST}}</td></tr>
+    <tr><td><strong>Estimated return</strong></td><td class="r win">{{ROI_MULT_PESS}}</td><td class="r win">{{ROI_MULT_OPT}}</td></tr>
   </table>
   <div class="spacer-s"></div>
   <p style="font-size:10.5pt;">{{ROI_KICKER}}</p>
